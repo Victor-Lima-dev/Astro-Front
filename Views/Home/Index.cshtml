@@ -45,6 +45,133 @@
 
 let intervalId; // Variável para armazenar o ID do intervalo
 
+function consultarPergunta(requisicaoId) {
+    fetch(`http://localhost:5084/api/Requisicoes/ConsultarPergunta?id=${requisicaoId}`, {
+        method: "GET"
+    })
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Consulta de pergunta falhou");
+        }
+    })
+    .then(function (pergunta) {
+        // Atualizar o conteúdo do elemento HTML com as informações da pergunta
+        var divPergunta = document.createElement("div");
+        divPergunta.className = "home-questao";
+
+        var divEnunciado = document.createElement("div");
+        divEnunciado.className = "home-enunciado";
+
+        var h4Titulo = document.createElement("h4");
+        h4Titulo.className = "home-titulo titulo";
+        h4Titulo.textContent = "Astronomy Question";
+
+        var pParagrafo = document.createElement("p");
+        pParagrafo.className = "home-paragrafo questao-paragrafo paragrafo";
+        pParagrafo.textContent = pergunta.conteudo;
+
+        divEnunciado.appendChild(h4Titulo);
+        divEnunciado.appendChild(pParagrafo);
+
+        var divAlternativas = document.createElement("div");
+        divAlternativas.className = "home-alternativas alternativas";
+
+        pergunta.respostas.forEach(function (resposta, index) {
+            var buttonAlternativa = document.createElement("button");
+            buttonAlternativa.className = "alternativa";
+            buttonAlternativa.textContent = resposta.conteudo;
+            // Adicione um evento de clique para processar a resposta
+            buttonAlternativa.onclick = function () {
+                processarResposta(resposta);
+            };
+            divAlternativas.appendChild(buttonAlternativa);
+        });
+
+        divPergunta.appendChild(divEnunciado);
+        divPergunta.appendChild(divAlternativas);
+
+        // Substituir o conteúdo anterior pelo novo
+        var paragrafoStatus = document.getElementById("paragrafoStatus");
+        paragrafoStatus.innerHTML = "";
+        paragrafoStatus.appendChild(divPergunta);
+    })
+    .catch(function (error) {
+        // Lógica para lidar com erros na consulta de pergunta
+        alert("Ocorreu um erro na consulta de pergunta: " + error.message);
+    });
+}
+
+function processarResposta(resposta) {
+    // Lógica para processar a resposta selecionada
+    // Você pode implementar essa lógica conforme necessário
+    // Aqui, estou apenas exibindo um alerta com a resposta selecionada
+    alert(`Resposta selecionada: ${resposta.id}`);
+}
+
+
+// Função para consultar a requisição
+function consultarRequisicao(idRequisicao) {
+    fetch(`http://localhost:5084/api/Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
+        method: "GET"
+    })
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Consulta de requisição falhou");
+        }
+    })
+    .then(function (requisicao) {
+        // Formatar a data para exibição amigável
+        var dataInicioFormatada = new Date(requisicao.dataInicio).toLocaleString();
+
+        // Limpar o intervalo anterior antes de iniciar um novo
+        clearInterval(intervalId);
+
+        // Atualizar o conteúdo do elemento p com as informações recebidas
+        var paragrafoStatus = document.getElementById("paragrafoStatus");
+
+        if (requisicao.status === 11) {
+            // Se o status for 11, chamar a função para consultar a pergunta
+            consultarPergunta(idRequisicao);
+        } else {
+            // Se o status não for 11, exibir as informações padrão
+            paragrafoStatus.innerHTML = `
+                <strong>Dados da Requisição:</strong><br>
+                ID: ${requisicao.id}<br>
+                Status: ${requisicao.status}<br>
+                Data Início: ${dataInicioFormatada}<br>
+                Data Fim: ${requisicao.dataFim}<br>
+                Validade: ${requisicao.valided ? 'Sim' : 'Não'}
+            `;
+
+            // Criar o botão "Consultar"
+            var botaoConsultar = document.createElement("button");
+            botaoConsultar.type = "button";
+            botaoConsultar.className = "home-botao botao";
+            botaoConsultar.textContent = "Consultar";
+            botaoConsultar.onclick = function() {
+                consultarRequisicao(idRequisicao);
+            };
+
+            // Adicionar o botão ao parágrafo
+            paragrafoStatus.appendChild(botaoConsultar);
+
+            // Iniciar o intervalo a cada 5 segundos
+            intervalId = setInterval(function () {
+                consultarRequisicao(idRequisicao);
+            }, 5000); // 5000 milissegundos = 5 segundos
+        }
+    })
+    .catch(function (error) {
+        // Lógica para lidar com erros na consulta de requisição
+        alert("Ocorreu um erro na consulta de requisição: " + error.message);
+    });
+}
+
+// Função para enviar o formulário
 function enviarFormulario() {
     // Obter o valor do campo do formulário
     var textoEntrada = document.getElementById("textoEntrada").value;
@@ -68,65 +195,12 @@ function enviarFormulario() {
         // Remover aspas do início e do fim da string (se existirem)
         idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
 
-        // Limpar o intervalo anterior antes de iniciar um novo
-        clearInterval(intervalId);
-
-        // Alterar o conteúdo do elemento p em caso de sucesso
-        var paragrafoStatus = document.getElementById("paragrafoStatus");
-        paragrafoStatus.innerHTML = `<strong>Requisição</strong> criada. ID da requisição: ${idRequisicao}`;
-
-        // Criar o botão "Consultar"
-        var botaoConsultar = document.createElement("button");
-        botaoConsultar.type = "button";
-        botaoConsultar.className = "home-botao botao";
-        botaoConsultar.textContent = "Consultar";
-        botaoConsultar.onclick = function() {
-            consultarRequisicao(idRequisicao);
-        };
-
-        // Adicionar o botão ao parágrafo
-        paragrafoStatus.appendChild(botaoConsultar);
-
-        // Iniciar o intervalo a cada 5 segundos
-        intervalId = setInterval(function () {
-            consultarRequisicao(idRequisicao);
-        }, 5000); // 5000 milissegundos = 5 segundos
+        // Chamar a função para consultar a requisição
+        consultarRequisicao(idRequisicao);
     })
     .catch(function (error) {
         // Alterar o conteúdo do elemento p em caso de erro
         document.getElementById("paragrafoStatus").innerHTML = `<strong>Erro na requisição:</strong> ${error.message}`;
-    });
-}
-
-function consultarRequisicao(idRequisicao) {
-    fetch(`http://localhost:5084/api/Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
-        method: "GET"
-    })
-    .then(function (response) {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Consulta de requisição falhou");
-        }
-    })
-    .then(function (requisicao) {
-        // Formatar a data para exibição amigável
-        var dataInicioFormatada = new Date(requisicao.dataInicio).toLocaleString();
-
-        // Atualizar o conteúdo do elemento p com as informações recebidas
-        var paragrafoStatus = document.getElementById("paragrafoStatus");
-        paragrafoStatus.innerHTML = `
-            <strong>Dados da Requisição:</strong><br>
-            ID: ${requisicao.id}<br>
-            Status: ${requisicao.status}<br>
-            Data Início: ${dataInicioFormatada}<br>
-            Data Fim: ${requisicao.dataFim}<br>
-            Validade: ${requisicao.valided ? 'Sim' : 'Não'}
-        `;
-    })
-    .catch(function (error) {
-        // Lógica para lidar com erros na consulta de requisição
-        alert("Ocorreu um erro na consulta de requisição: " + error.message);
     });
 }
 
