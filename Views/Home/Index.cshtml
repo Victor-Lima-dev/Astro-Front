@@ -104,10 +104,23 @@ function consultarPergunta(requisicaoId) {
 }
 
 function processarResposta(resposta) {
-    // Lógica para processar a resposta selecionada
-    // Você pode implementar essa lógica conforme necessário
-    // Aqui, estou apenas exibindo um alerta com a resposta selecionada
-    alert(`Resposta selecionada: ${resposta.id}`);
+    var formData = new FormData();
+    formData.append('IdPergunta', resposta.perguntaId);
+    formData.append('IdResposta', resposta.id);
+
+    fetch('http://localhost:5084/api/Requisicoes/ResponderPergunta', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Verificar se a resposta é verdadeira ou falsa
+        var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
+        alert(mensagem);
+    })
+    .catch(error => {
+        alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
+    });
 }
 
 
