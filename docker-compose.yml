@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  FrontAstro:
+   image: vitinholol/FrontAstro
+   container_name: FrontAstro
+   restart: always
+   ports:
+    - 8002:80
+   user: root
+   build: 
+    context: .  
+
