@@ -184,11 +184,11 @@ function consultarRequisicao(idRequisicao) {
         switch (requisicao.status) {
             case 1:
                 // Requisição na fila
-                paragrafoStatus.innerHTML = "A requisição ainda não foi enviada para o GPT, mas está na fila";
+                paragrafoStatus.innerHTML = "Your question is being analyzed and will be sent to the GPT soon.";
                 break;
             case 6:
                 // GPT processando
-                paragrafoStatus.innerHTML = "O GPT está processando a sua pergunta. Por favor, aguarde.";
+                paragrafoStatus.innerHTML = "The GPT is processing your question. Please wait.";
                 break;
             case 11:
                 // Se o status for 11, chamar a função para consultar a pergunta
@@ -196,7 +196,7 @@ function consultarRequisicao(idRequisicao) {
                 break;
             default:
                 // Erro na requisição
-                paragrafoStatus.innerHTML = "Erro na requisição. Por favor, mude o texto de entrada e tente novamente.";
+                paragrafoStatus.innerHTML = "Request error. Please change the input text and try again.";
                 break;
         }
 

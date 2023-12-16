@@ -19,6 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-size: 1.15rem;
 }
 
 main {
@@ -31,11 +32,11 @@ main {
 .main
 {
   display: flex;
-  justify-content: center;
+  
   align-items: center;
   flex-direction: column;
-
-
+ 
+  gap: 5rem;
 }
 
 
@@ -43,25 +44,23 @@ main {
 .home-container
 {
   text-align: center;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .home-status
 {
   text-align: center;
-  height: 30rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
 }
 
-
-.home-questao, .home-container, .home-status
-{
-  width: 50rem;
-}
 @media (max-width: 750px) {
+
   .home-questao, .home-container, .home-status {
     width: auto;
+    height: auto;
   }
 }
 
@@ -72,4 +71,5 @@ main {
   justify-content: space-between;
   gap: .5rem;
   flex-direction: column;
+
 }
