@@ -2,11 +2,11 @@ version: '3.1'
 
 services:
   FrontAstro:
-   image: vitinholol/FrontAstro
-   container_name: FrontAstro
+   image: vitinholol/frontastro
+   container_name: frontastro
    restart: always
    ports:
-    - 8002:80
+    - 8005:80
    user: root
    build: 
     context: .  
