@@ -28,6 +28,18 @@ main {
   flex-direction: column;
 }
 
+.main
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border: 1px solid red;
+}
+
+
+
 .home-container
 {
   text-align: center;
@@ -46,6 +58,11 @@ main {
 .home-questao, .home-container, .home-status
 {
   width: 50rem;
+}
+@media (max-width: 750px) {
+  .home-questao, .home-container, .home-status {
+    width: auto;
+  }
 }
 
 .home-alternativas
