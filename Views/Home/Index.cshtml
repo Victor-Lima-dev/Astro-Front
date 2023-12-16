@@ -83,9 +83,18 @@ function consultarPergunta(requisicaoId) {
             buttonAlternativa.className = "alternativa";
             buttonAlternativa.textContent = resposta.conteudo;
             // Adicione um evento de clique para processar a resposta
-            buttonAlternativa.onclick = function () {
+            @* buttonAlternativa.onclick = function () {
                 processarResposta(resposta);
-            };
+            }; *@
+
+      // Atribuir um identificador único (id) a cada botão
+    var alternativaId = `alternativa_${index}`;
+    buttonAlternativa.id = alternativaId;
+
+    // Adicione um evento de clique para processar a resposta
+    buttonAlternativa.onclick = function () {
+        processarResposta(resposta, alternativaId);
+    };
             divAlternativas.appendChild(buttonAlternativa);
         });
 
@@ -103,7 +112,7 @@ function consultarPergunta(requisicaoId) {
     });
 }
 
-function processarResposta(resposta) {
+function processarResposta(resposta, alternativaId) {
     var formData = new FormData();
     formData.append('IdPergunta', resposta.perguntaId);
     formData.append('IdResposta', resposta.id);
@@ -117,10 +126,35 @@ function processarResposta(resposta) {
         // Verificar se a resposta é verdadeira ou falsa
         var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
         alert(mensagem);
+
+        // Obter o botão de alternativa pelo id e aplicar o estilo correspondente
+        var botaoAlternativa = document.getElementById(alternativaId);
+        if (data) {
+            // Resposta correta (verde)
+            botaoAlternativa.style.backgroundColor = 'green';
+            botaoAlternativa.style.color = 'white';
+
+            // Desabilitar outros botões
+            desabilitarBotoesAlternativa();
+        } else {
+            // Resposta incorreta (vermelho)
+            botaoAlternativa.style.backgroundColor = 'red';
+            botaoAlternativa.style.color = 'white';
+        }
     })
     .catch(error => {
         alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
     });
+}
+
+function desabilitarBotoesAlternativa() {
+    // Obter todos os botões de alternativa
+    var botoesAlternativa = document.getElementsByClassName("alternativa");
+
+    // Iterar sobre os botões e desabilitar
+    for (var i = 0; i < botoesAlternativa.length; i++) {
+        botoesAlternativa[i].disabled = true;
+    }
 }
 
 
