@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN dotnet publish frontastro.csproj -c release -o /out
+RUN dotnet publish FrontAstro.csproj -c release -o /out
 
 
 # final stage/image
@@ -26,7 +26,7 @@ COPY --from=build /out ./
 
 EXPOSE 80
 
-RUN chmod +x frontastro.dll
+RUN chmod +x FrontAstro.dll
 
 
-ENTRYPOINT ["dotnet", "frontastro.dll"]
+ENTRYPOINT ["dotnet", "FrontAstro.dll"]
