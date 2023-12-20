@@ -1,6 +1,204 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿<div>
+    <h1>Consulta de Perguntas</h1>
+    <button onclick="consultarPerguntas()">Consultar Perguntas</button>
+</div>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<table class="table" id="tabelaPerguntas">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="hidden">ID</th>
+            <th scope="col">Conteúdo</th>
+            <th scope="col">Ação</th>
+            <!-- Adicione mais colunas conforme necessário -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Os dados da tabela serão inseridos aqui dinamicamente -->
+    </tbody>
+</table>
+
+<div id="paragrafoStatus">
+    <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
+</div>
+
+<script>
+    async function consultarPerguntas() {
+        try {
+            const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/ConsultarPerguntas');
+
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
+            }
+
+            const perguntas = await response.json();
+
+            // Chama a função para criar a tabela com base nos dados
+        
+            criarTabela(perguntas);
+
+        } catch (error) {
+            console.error('Erro na consulta de perguntas:', error.message);
+        }
+    }
+
+    function criarTabela(perguntas) {
+        const tabela = document.getElementById('tabelaPerguntas');
+        const tbody = tabela.querySelector('tbody');
+
+        // Limpa o conteúdo atual da tabela
+        tbody.innerHTML = '';
+
+        // Itera sobre as perguntas e adiciona as linhas à tabela
+        perguntas.forEach((pergunta, index) => {
+            const row = document.createElement('tr');
+
+            const numeroCelula = document.createElement('th');
+            numeroCelula.setAttribute('scope', 'row');
+            numeroCelula.textContent = index + 1;
+
+            // Adiciona o ID como um atributo data-id
+            const idCelula = document.createElement('td');
+            idCelula.classList.add('hidden'); // Adiciona a classe para ocultar visualmente
+            idCelula.setAttribute('data-id-requisicao', pergunta.requisicaoId); // Usar o ID da requisição aqui
+            idCelula.textContent = pergunta.requisicaoId;
+
+
+
+
+            const conteudoCelula = document.createElement('td');
+            conteudoCelula.textContent = pergunta.conteudo;
+
+            const acaoCelula = document.createElement('td');
+            const botaoAcao = document.createElement('button');
+            botaoAcao.textContent = 'Consultar';
+            botaoAcao.onclick = function () {
+                const idRequisicao = idCelula.textContent;
+
+                consultarPergunta(idRequisicao);
+            };
+
+            // Adiciona as células à linha
+            row.appendChild(numeroCelula);
+            row.appendChild(idCelula);
+            row.appendChild(conteudoCelula);
+            row.appendChild(acaoCelula);
+            acaoCelula.appendChild(botaoAcao);
+
+            // Adiciona a linha à tabela
+            tbody.appendChild(row);
+        });
+    }
+
+    let intervalId;
+
+    function consultarPergunta(idRequisicao) {
+      idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
+
+      console.log("Consultando pergunta:", idRequisicao);
+
+        fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
+            method: "GET"
+        })
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+      console.log("Consultando pergunta:", idRequisicao);
+
+                throw new Error("Consulta de pergunta falhou");
+            }
+        })
+        .then(function (pergunta) {
+            var divPergunta = document.createElement("div");
+            divPergunta.className = "home-questao";
+
+            var divEnunciado = document.createElement("div");
+            divEnunciado.className = "home-enunciado";
+
+            var h4Titulo = document.createElement("h4");
+            h4Titulo.className = "home-titulo titulo";
+            h4Titulo.textContent = "Astronomy Question";
+
+            var pParagrafo = document.createElement("p");
+            pParagrafo.className = "home-paragrafo questao-paragrafo paragrafo";
+            pParagrafo.textContent = pergunta.conteudo;
+
+            divEnunciado.appendChild(h4Titulo);
+            divEnunciado.appendChild(pParagrafo);
+
+            var divAlternativas = document.createElement("div");
+            divAlternativas.className = "home-alternativas alternativas";
+
+            pergunta.respostas.forEach(function (resposta, index) {
+                var buttonAlternativa = document.createElement("button");
+                buttonAlternativa.className = "alternativa";
+                buttonAlternativa.textContent = resposta.conteudo;
+
+                var alternativaId = `alternativa_${index}`;
+                buttonAlternativa.id = alternativaId;
+
+                buttonAlternativa.onclick = function () {
+                    processarResposta(resposta, alternativaId);
+                };
+
+                divAlternativas.appendChild(buttonAlternativa);
+            });
+
+            divPergunta.appendChild(divEnunciado);
+            divPergunta.appendChild(divAlternativas);
+
+            var paragrafoStatus = document.getElementById("paragrafoStatus");
+            paragrafoStatus.innerHTML = "";
+            paragrafoStatus.appendChild(divPergunta);
+        })
+        .catch(function (error) {
+            alert("Ocorreu um erro na consulta de pergunta: " + error.message);
+        });
+    }
+
+  function processarResposta(resposta, alternativaId) {
+    var formData = new FormData();
+    formData.append('IdPergunta', resposta.perguntaId);
+    formData.append('IdResposta', resposta.id);
+
+    fetch('http://24.199.100.244:8002/api/Requisicoes/ResponderPergunta', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Verificar se a resposta é verdadeira ou falsa
+        var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
+      
+
+        // Obter o botão de alternativa pelo id e aplicar o estilo correspondente
+        var botaoAlternativa = document.getElementById(alternativaId);
+        if (data) {
+            // Resposta correta (verde)
+            botaoAlternativa.style.backgroundColor = 'green';
+            botaoAlternativa.style.color = 'white';
+
+            // Desabilitar outros botões
+            desabilitarBotoesAlternativa();
+        } else {
+            // Resposta incorreta (vermelho)
+            botaoAlternativa.style.backgroundColor = 'red';
+            botaoAlternativa.style.color = 'white';
+        }
+    })
+    .catch(error => {
+        alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
+    });
+}
+
+function desabilitarBotoesAlternativa() {
+    // Obter todos os botões de alternativa
+    var botoesAlternativa = document.getElementsByClassName("alternativa");
+
+    // Iterar sobre os botões e desabilitar
+    for (var i = 0; i < botoesAlternativa.length; i++) {
+        botoesAlternativa[i].disabled = true;
+    }
+}
+</script>
