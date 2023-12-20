@@ -444,8 +444,8 @@ function criarListaDeTags(tags) {
         itemDaLista.addEventListener('click', function () {
             // Chama a função para fazer o POST no endpoint
             enviarTagParaPerguntas(tag.id);
+            obterEAtualizarTagsRelacionadas(tag.id);
 
-            console.log(tag.id);
         });
 
         // Adiciona o item à lista
@@ -482,6 +482,27 @@ async function enviarTagParaPerguntas(tag) {
 
     } catch (error) {
         console.error('Erro ao enviar TAG para PerguntasPorTags:', error.message);
+    }
+}
+
+// Função para obter TAGs relacionadas e atualizar a lista
+async function obterEAtualizarTagsRelacionadas(tagId) {
+    console.log("chegou aqui");
+    try {
+        console.log(tagId);
+        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/TagsRelacionadas?tagId=${tagId}`);
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const tagsRelacionadas = await response.json();
+
+        // Chama a função para criar a lista de TAGs com base nas TAGs relacionadas
+        criarListaDeTags(tagsRelacionadas);
+
+    } catch (error) {
+        console.error('Erro ao obter TAGs relacionadas:', error.message);
     }
 }
 
