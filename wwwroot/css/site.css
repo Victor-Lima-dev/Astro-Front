@@ -102,6 +102,7 @@ li
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 
 .perguntas > button
@@ -110,4 +111,10 @@ li
   padding: .5rem;
   border-radius: 5px;
   color: white;
+  
+}
+
+.hidden
+{
+  display: none;
 }

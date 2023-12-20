@@ -31,7 +31,9 @@
 <div class="perguntas">
     <h1>Perguntas</h1>
     <button onclick="consultarPerguntas()">Todas as Perguntas</button>
-    <ul id="listaDeTags"></ul>
+    <button onclick="toggleTags()">Mostrar/Esconder Tags</button>
+
+    <ul id="listaDeTags" class="d-none"></ul>
 </div>
 
 <table class="table" id="tabelaPerguntas">
@@ -56,6 +58,11 @@
 
 
 <script>
+
+ function toggleTags() {
+        const listaDeTags = document.getElementById('listaDeTags');
+        listaDeTags.classList.toggle('d-none');
+    }
 
 let intervalId; // Variável para armazenar o ID do intervalo
 //teste
@@ -263,7 +270,7 @@ function enviarFormulario() {
  async function consultarPerguntas() {
         try {
              console.log("teste");
-            const response = await fetch('http://localhost:5084/api/Requisicoes/ConsultarPerguntas');
+            const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/ConsultarPerguntas');
 
             if (!response.ok) {
           
@@ -405,7 +412,7 @@ function enviarFormulario() {
 // Função para carregar as TAGs ao carregar a página
 async function carregarTags() {
     try {
-        const response = await fetch('http://localhost:5084/api/Requisicoes/RetornarTAGs');
+        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/RetornarTAGs');
 
         if (!response.ok) {
             throw new Error('Erro na requisição');
@@ -458,7 +465,7 @@ async function enviarTagParaPerguntas(tag) {
 
         console.log(formData);
 
-        const response = await fetch('http://localhost:5084/api/Requisicoes/PerguntasPorTags', {
+        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
             method: 'POST',
             body: formData,
         });
