@@ -73,3 +73,25 @@ main {
   flex-direction: column;
 
 }
+
+#listaDeTags
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+li
+{
+  list-style: none;
+}
+
+#listaDeTags > li
+{
+  background-color: #258cfb;
+  padding: .5rem;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}

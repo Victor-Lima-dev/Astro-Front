@@ -75,7 +75,7 @@
             botaoAcao.onclick = function () {
                 const idRequisicao = idCelula.textContent;
 
-                consultarPergunta(idRequisicao);
+                consultarPerguntaLista(idRequisicao);
             };
 
             // Adiciona as células à linha
@@ -92,7 +92,7 @@
 
     let intervalId;
 
-    function consultarPergunta(idRequisicao) {
+    function consultarPerguntaLista(idRequisicao) {
       idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
 
       console.log("Consultando pergunta:", idRequisicao);

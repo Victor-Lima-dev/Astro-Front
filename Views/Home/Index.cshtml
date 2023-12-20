@@ -5,6 +5,8 @@
 
 
 <div class="home-container">
+    
+
 
     <h1 class="home-titulo titulo">AstroGenerator</h1>
 
@@ -26,21 +28,31 @@
 </div>
 </div>
 
-@* <div class="home-questao">
-    <div class="home-enunciado">
-        <h4 class="home-titulo titulo">Astronomy Question</h4>
-        <p class="home-paragrafo questao-paragrafo paragrafo">This is where the generated question about the
-            astronomical topic will appear.
-        </p>
-    </div>
-    <div class="home-alternativas alternativas">
-        <button class="alternativa">option 1</button>
-        <button class="alternativa">option 2</button>
-        <button class="alternativa">option 3</button>
-        <button class="alternativa">option 4</button>
-    </div>
-</div> *@
+<div>
+    <h1>Consulta de Perguntas</h1>
+    <button onclick="consultarPerguntas()">Consultar Perguntas</button>
+    <ul id="listaDeTags"></ul>
+</div>
 
+<table class="table" id="tabelaPerguntas">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="hidden">ID</th>
+            <th scope="col">Conteúdo</th>
+            <th scope="col">TAGs</th>
+            <th scope="col">Ação</th>
+            <!-- Adicione mais colunas conforme necessário -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Os dados da tabela serão inseridos aqui dinamicamente -->
+    </tbody>
+</table>
+
+<div id="paragrafoStatus">
+    <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
+</div>
 
 
 <script>
@@ -201,10 +213,12 @@ function consultarRequisicao(idRequisicao) {
         }
 
 
-        // Iniciar o intervalo a cada 5 segundos
-        intervalId = setInterval(function () {
-            consultarRequisicao(idRequisicao);
-        }, 5000); // 5000 milissegundos = 5 segundos
+        // Se o status não for 11, iniciar o intervalo a cada 5 segundos
+        if (requisicao.status !== 11) {
+            intervalId = setInterval(function () {
+                consultarRequisicao(idRequisicao);
+            }, 5000); // 5000 milissegundos = 5 segundos
+        }
     })
     .catch(function (error) {
         // Lógica para lidar com erros na consulta de requisição
@@ -245,5 +259,186 @@ function enviarFormulario() {
         document.getElementById("paragrafoStatus").innerHTML = `<strong>Erro na requisição:</strong> ${error.message}`;
     });
 }
+
+ async function consultarPerguntas() {
+        try {
+             console.log("teste");
+            const response = await fetch('http://localhost:5084/api/Requisicoes/ConsultarPerguntas');
+
+            if (!response.ok) {
+          
+
+                throw new Error('Erro na requisição');
+            }
+
+            const perguntas = await response.json();
+
+            // Chama a função para criar a tabela com base nos dados
+        
+            criarTabela(perguntas);
+            console.log(perguntas);
+
+        } catch (error) {
+            console.error('Erro na consulta de perguntas:', error.message);
+        }
+    }
+
+    function criarTabela(perguntas)
+     {
+    const tabela = document.getElementById('tabelaPerguntas');
+    const tbody = tabela.querySelector('tbody');
+
+    // Limpa o conteúdo atual da tabela
+    tbody.innerHTML = '';
+
+    // Itera sobre as perguntas e adiciona as linhas à tabela
+    perguntas.forEach((pergunta, index) => {
+        const row = document.createElement('tr');
+
+        const numeroCelula = document.createElement('th');
+        numeroCelula.setAttribute('scope', 'row');
+        numeroCelula.textContent = index + 1;
+
+        // Adiciona o ID como um atributo data-id
+        const idCelula = document.createElement('td');
+        idCelula.classList.add('hidden'); // Adiciona a classe para ocultar visualmente
+        idCelula.setAttribute('data-id-requisicao', pergunta.requisicaoId); // Usar o ID da requisição aqui
+        idCelula.textContent = pergunta.requisicaoId;
+
+        const conteudoCelula = document.createElement('td');
+        conteudoCelula.textContent = pergunta.conteudo;
+
+        const tagsCelula = document.createElement('td');
+        const tagsTexto = pergunta.tags.join(', '); // Unir os textos das tags com vírgula e espaço
+        tagsCelula.textContent = tagsTexto;
+
+        const acaoCelula = document.createElement('td');
+        const botaoAcao = document.createElement('button');
+        botaoAcao.textContent = 'Consultar';
+        botaoAcao.onclick = function () {
+            const idRequisicao = idCelula.textContent;
+            consultarPerguntaLista(idRequisicao);
+        };
+
+        // Adiciona as células à linha
+        row.appendChild(numeroCelula);
+        row.appendChild(idCelula);
+        row.appendChild(conteudoCelula);
+        row.appendChild(tagsCelula);
+        row.appendChild(acaoCelula);
+        acaoCelula.appendChild(botaoAcao);
+
+        // Adiciona a linha à tabela
+        tbody.appendChild(row);
+    });
+}
+
+
+
+    function consultarPerguntaLista(idRequisicao) {
+      idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
+
+     
+
+        fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
+            method: "GET"
+        })
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+    
+
+                throw new Error("Consulta de pergunta falhou");
+            }
+        })
+        .then(function (pergunta) {
+            console.log(pergunta);
+            var divPergunta = document.createElement("div");
+            divPergunta.className = "home-questao";
+
+            var divEnunciado = document.createElement("div");
+            divEnunciado.className = "home-enunciado";
+
+            var h4Titulo = document.createElement("h4");
+            h4Titulo.className = "home-titulo titulo";
+            h4Titulo.textContent = "Astronomy Question";
+
+            var pParagrafo = document.createElement("p");
+            pParagrafo.className = "home-paragrafo questao-paragrafo paragrafo";
+            pParagrafo.textContent = pergunta.conteudo;
+
+            divEnunciado.appendChild(h4Titulo);
+            divEnunciado.appendChild(pParagrafo);
+
+            var divAlternativas = document.createElement("div");
+            divAlternativas.className = "home-alternativas alternativas";
+
+            pergunta.respostas.forEach(function (resposta, index) {
+                var buttonAlternativa = document.createElement("button");
+                buttonAlternativa.className = "alternativa";
+                buttonAlternativa.textContent = resposta.conteudo;
+
+                var alternativaId = `alternativa_${index}`;
+                buttonAlternativa.id = alternativaId;
+
+                buttonAlternativa.onclick = function () {
+                    processarResposta(resposta, alternativaId);
+                };
+
+                divAlternativas.appendChild(buttonAlternativa);
+            });
+
+            divPergunta.appendChild(divEnunciado);
+            divPergunta.appendChild(divAlternativas);
+
+            var paragrafoStatus = document.getElementById("paragrafoStatus");
+            paragrafoStatus.innerHTML = "";
+            paragrafoStatus.appendChild(divPergunta);
+        })
+        .catch(function (error) {
+            alert("Ocorreu um erro na consulta de pergunta: " + error.message);
+        });
+    }
+
+
+// Função para carregar as TAGs ao carregar a página
+async function carregarTags() {
+    try {
+        const response = await fetch('http://localhost:5084/api/Requisicoes/RetornarTAGs');
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const tags = await response.json();
+
+        // Chama a função para criar a lista de TAGs com base nos dados
+        criarListaDeTags(tags);
+
+    } catch (error) {
+        console.error('Erro ao carregar TAGs:', error.message);
+    }
+}
+
+// Função para criar a lista de TAGs no HTML
+function criarListaDeTags(tags) {
+    const listaDeTags = document.getElementById('listaDeTags');
+
+    // Limpa o conteúdo atual da lista
+    listaDeTags.innerHTML = '';
+
+    // Itera sobre as TAGs e adiciona itens à lista
+    tags.forEach(tag => {
+        const itemDaLista = document.createElement('li');
+        itemDaLista.textContent = tag.texto; // Substitua 'texto' pelo nome da propriedade da TAG
+
+        // Adiciona o item à lista
+        listaDeTags.appendChild(itemDaLista);
+    });
+}
+
+// Chama a função para carregar TAGs ao carregar a página
+carregarTags();
 
 </script>
