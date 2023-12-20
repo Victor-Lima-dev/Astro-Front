@@ -28,9 +28,9 @@
 </div>
 </div>
 
-<div>
-    <h1>Consulta de Perguntas</h1>
-    <button onclick="consultarPerguntas()">Consultar Perguntas</button>
+<div class="perguntas">
+    <h1>Perguntas</h1>
+    <button onclick="consultarPerguntas()">Todas as Perguntas</button>
     <ul id="listaDeTags"></ul>
 </div>
 
@@ -433,12 +433,53 @@ function criarListaDeTags(tags) {
         const itemDaLista = document.createElement('li');
         itemDaLista.textContent = tag.texto; // Substitua 'texto' pelo nome da propriedade da TAG
 
+        // Adiciona o evento de clique
+        itemDaLista.addEventListener('click', function () {
+            // Chama a função para fazer o POST no endpoint
+            enviarTagParaPerguntas(tag.id);
+
+            console.log(tag.id);
+        });
+
         // Adiciona o item à lista
         listaDeTags.appendChild(itemDaLista);
     });
 }
 
-// Chama a função para carregar TAGs ao carregar a página
+// Função para enviar a TAG para o endpoint PerguntasPorTags
+async function enviarTagParaPerguntas(tag) {
+    try {
+     
+       
+        // Crie um objeto FormData para enviar dados como 'form-data'
+        var formData = new FormData();
+
+        formData.append('tagId', tag);
+
+        console.log(formData);
+
+        const response = await fetch('http://localhost:5084/api/Requisicoes/PerguntasPorTags', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+
+        const perguntas = await response.json();
+
+        console.log(perguntas);
+        criarTabela(perguntas);
+        // Faça o que for necessário com as perguntas retornadas
+
+    } catch (error) {
+        console.error('Erro ao enviar TAG para PerguntasPorTags:', error.message);
+    }
+}
+
+
+
 carregarTags();
 
 </script>
