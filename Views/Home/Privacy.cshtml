@@ -90,7 +90,7 @@
     let intervalId; // Variável para armazenar o ID do intervalo
     //teste
     function consultarPergunta(requisicaoId) {
-        fetch(`http://localhost:5084/api/Requisicoes/ConsultarPergunta?id=${requisicaoId}`, {
+        fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${requisicaoId}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -169,7 +169,7 @@ function processarResposta(resposta, alternativaId) {
 
        
 
-        fetch('http://localhost:5084/api/Requisicoes/ResponderPergunta', {
+        fetch('http://24.199.100.244:8002/api/Requisicoes/ResponderPergunta', {
             method: 'POST',
             body: formData,
             headers: {
@@ -221,7 +221,7 @@ function consultarRequisicao(idRequisicao) {
     try {
   
 
-        fetch(`http://localhost:5084/api/Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
+        fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -292,7 +292,7 @@ function enviarFormulario() {
         var formData = new FormData();
         formData.append('textoEntrada', textoEntrada);
 
-        fetch("http://localhost:5084/api/Requisicoes/IniciarRequisicao", {
+        fetch("http://24.199.100.244:8002/api/Requisicoes/IniciarRequisicao", {
             method: "POST",
             body: formData,
             headers: {
@@ -327,7 +327,7 @@ function enviarFormulario() {
     try {
         
 
-        const response = await fetch('http://localhost:5084/api/Requisicoes/ConsultarPerguntas', {
+        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/ConsultarPerguntas', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -361,7 +361,7 @@ function enviarFormulario() {
         } 
 
 
-        const response = await fetch(`http://localhost:5084/api/Requisicoes/ProcurarTAG?texto=${searchTerm}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarTAG?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -439,7 +439,7 @@ function enviarFormulario() {
 
 
 
-    fetch(`http://localhost:5084/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
+    fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -508,7 +508,7 @@ async function carregarTags() {
          let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RlIiwianRpIjoiNTMwZmFiNDAtOWEzMy00NDc2LTk5ZWItZTcwMDk0NjE3MmU0IiwiZXhwIjoxNzAzMTgzNjM2fQ.HdDtxjeIxLmfXMkzyCXonrPek0yiBuSxBz48VLpidcg";
 
             console.log(token);
-     const response = await fetch('http://localhost:5084/api/Requisicoes/RetornarTAGs', {
+     const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/RetornarTAGs', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -567,7 +567,7 @@ async function enviarTagParaPerguntas(tag) {
 
       
 
-        const response = await fetch('http://localhost:5084/api/Requisicoes/PerguntasPorTags', {
+        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
             method: 'POST',
             body: formData,
             headers: {
@@ -596,7 +596,7 @@ async function obterEAtualizarTagsRelacionadas(tagId) {
   
     try {
 
-        const response = await fetch(`http://localhost:5084/api/Requisicoes/TagsRelacionadas?tagId=${tagId}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/TagsRelacionadas?tagId=${tagId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
