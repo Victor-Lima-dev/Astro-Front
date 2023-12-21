@@ -28,7 +28,9 @@
 </div>
 </div>
 
-<div class="perguntas">
+ <button class="btn btn-primary" onclick="toggleElement('perguntasElemento')">Mostrar/Esconder Perguntas</button>
+
+<div class="perguntas perguntasElemento d-none">
     <h1>Perguntas</h1>
     <button onclick="consultarPerguntas()">Todas as Perguntas</button>
     <button onclick="toggleTags()">Mostrar/Esconder Tags</button>
@@ -36,7 +38,7 @@
     <ul id="listaDeTags" class="d-none"></ul>
 </div>
 
-<table class="table" id="tabelaPerguntas">
+<table class="table perguntasElemento d-none" id="tabelaPerguntas">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -62,6 +64,15 @@
  function toggleTags() {
         const listaDeTags = document.getElementById('listaDeTags');
         listaDeTags.classList.toggle('d-none');
+    }
+
+     function toggleElement(elementClass) {
+        const elements = document.getElementsByClassName(elementClass);
+
+        // Itera sobre os elementos encontrados pela classe
+        for (const element of elements) {
+            element.classList.toggle('d-none');
+        }
     }
 
 let intervalId; // Variável para armazenar o ID do intervalo
@@ -456,8 +467,7 @@ function criarListaDeTags(tags) {
 // Função para enviar a TAG para o endpoint PerguntasPorTags
 async function enviarTagParaPerguntas(tag) {
     try {
-     
-       
+
         // Crie um objeto FormData para enviar dados como 'form-data'
         var formData = new FormData();
 

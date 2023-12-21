@@ -103,6 +103,8 @@ li
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  border: 1px solid red;
+  margin-top: 2rem;
 }
 
 .perguntas > button
@@ -112,6 +114,7 @@ li
   border-radius: 5px;
   color: white;
   
+
 }
 
 .hidden
