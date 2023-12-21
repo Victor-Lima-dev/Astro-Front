@@ -1,14 +1,57 @@
-﻿<div>
-    <h1>Consulta de Perguntas</h1>
-    <button onclick="consultarPerguntas()">Consultar Perguntas</button>
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="main">
+
+
+    <div class="home-container">
+
+
+
+        <h1 class="home-titulo titulo">AstroGenerator</h1>
+
+        <p class="home-paragrafo paragrafo">Use AstroGenerator to explore and learn about different astronomical topics.
+            Insert TAGs, base texts and references, click 'Generate' and instantly get questions and answers generated.
+            Uncover the secrets of the universe in a practical and intuitive way.</p>
+
+        <div class="home-inputBox">
+            <input class="home-input input" type="text" id="textoEntrada">
+            <button type="button" class="home-botao botao" onclick="enviarFormulario()">Generate</button>
+        </div>
+
+    </div>
+
+    <div class="home-status">
+        <div class="home-statusBox">
+            <p class="home-paragrafo paragrafo" id="paragrafoStatus"><strong>Status</strong> This is where the status of
+                the generated question will appear.</p>
+        </div>
+    </div>
 </div>
 
-<table class="table" id="tabelaPerguntas">
+<button class="btn btn-primary" onclick="toggleElement('perguntasElemento')">Mostrar/Esconder Perguntas</button>
+
+<div class="perguntas perguntasElemento d-none">
+    <h1>Perguntas</h1>
+    <button onclick="consultarPerguntas()">Todas as Perguntas</button>
+    <button onclick="toggleTags()">Mostrar/Esconder Tags</button>
+
+    <div id = "pesquisa" class="d-none">
+        <label for="pesquisaTags">Pesquisar Tags:</label>
+        <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
+        <button onclick="carregarTags()" >Limpar</button>
+    </div>
+
+    <ul id="listaDeTags" class="d-none"></ul>
+</div>
+
+<table class="table perguntasElemento d-none" id="tabelaPerguntas">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col" class="hidden">ID</th>
             <th scope="col">Conteúdo</th>
+            <th scope="col">TAGs</th>
             <th scope="col">Ação</th>
             <!-- Adicione mais colunas conforme necessário -->
         </tr>
@@ -22,25 +65,323 @@
     <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
 </div>
 
+
 <script>
-    async function consultarPerguntas() {
-        try {
-            const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/ConsultarPerguntas');
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RlIiwianRpIjoiNTMwZmFiNDAtOWEzMy00NDc2LTk5ZWItZTcwMDk0NjE3MmU0IiwiZXhwIjoxNzAzMTgzNjM2fQ.HdDtxjeIxLmfXMkzyCXonrPek0yiBuSxBz48VLpidcg";
 
-            if (!response.ok) {
-                throw new Error('Erro na requisição');
-            }
+    function toggleTags() {
+        const listaDeTags = document.getElementById('listaDeTags');
+        const pesquisa = document.getElementById('pesquisa');
 
-            const perguntas = await response.json();
-
-            // Chama a função para criar a tabela com base nos dados
+        pesquisa.classList.toggle('d-none');
         
-            criarTabela(perguntas);
+        listaDeTags.classList.toggle('d-none');
+    }
 
-        } catch (error) {
-            console.error('Erro na consulta de perguntas:', error.message);
+    function toggleElement(elementClass) {
+        const elements = document.getElementsByClassName(elementClass);
+
+        // Itera sobre os elementos encontrados pela classe
+        for (const element of elements) {
+            element.classList.toggle('d-none');
         }
     }
+
+    let intervalId; // Variável para armazenar o ID do intervalo
+    //teste
+    function consultarPergunta(requisicaoId) {
+        fetch(`http://localhost:5084/api/Requisicoes/ConsultarPergunta?id=${requisicaoId}`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Consulta de pergunta falhou");
+                }
+            })
+            .then(function (pergunta) {
+                // Atualizar o conteúdo do elemento HTML com as informações da pergunta
+                var divPergunta = document.createElement("div");
+                divPergunta.className = "home-questao";
+
+                var divEnunciado = document.createElement("div");
+                divEnunciado.className = "home-enunciado";
+
+                var h4Titulo = document.createElement("h4");
+                h4Titulo.className = "home-titulo titulo";
+                h4Titulo.textContent = "Astronomy Question";
+
+                var pParagrafo = document.createElement("p");
+                pParagrafo.className = "home-paragrafo questao-paragrafo paragrafo";
+                pParagrafo.textContent = pergunta.conteudo;
+
+                divEnunciado.appendChild(h4Titulo);
+                divEnunciado.appendChild(pParagrafo);
+
+                var divAlternativas = document.createElement("div");
+                divAlternativas.className = "home-alternativas alternativas";
+
+                pergunta.respostas.forEach(function (resposta, index) {
+                    var buttonAlternativa = document.createElement("button");
+                    buttonAlternativa.className = "alternativa";
+                    buttonAlternativa.textContent = resposta.conteudo;
+                    // Adicione um evento de clique para processar a resposta
+    @* buttonAlternativa.onclick = function () {
+                        processarResposta(resposta);
+                        }; *@
+
+      // Atribuir um identificador único (id) a cada botão
+    var alternativaId = `alternativa_${index}`;
+                    buttonAlternativa.id = alternativaId;
+
+                    // Adicione um evento de clique para processar a resposta
+                    buttonAlternativa.onclick = function () {
+                        processarResposta(resposta, alternativaId);
+                    };
+                    divAlternativas.appendChild(buttonAlternativa);
+                });
+
+                divPergunta.appendChild(divEnunciado);
+                divPergunta.appendChild(divAlternativas);
+
+                // Substituir o conteúdo anterior pelo novo
+                var paragrafoStatus = document.getElementById("paragrafoStatus");
+                paragrafoStatus.innerHTML = "";
+                paragrafoStatus.appendChild(divPergunta);
+            })
+            .catch(function (error) {
+                // Lógica para lidar com erros na consulta de pergunta
+                alert("Ocorreu um erro na consulta de pergunta: " + error.message);
+            });
+    }
+
+  // Função para processar a resposta
+function processarResposta(resposta, alternativaId) {
+    try {
+        var formData = new FormData();
+        formData.append('IdPergunta', resposta.perguntaId);
+        formData.append('IdResposta', resposta.id);
+
+       
+
+        fetch('http://localhost:5084/api/Requisicoes/ResponderPergunta', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Verificar se a resposta é verdadeira ou falsa
+            var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
+
+            // Obter o botão de alternativa pelo id e aplicar o estilo correspondente
+            var botaoAlternativa = document.getElementById(alternativaId);
+            if (data) {
+                // Resposta correta (verde)
+                botaoAlternativa.style.backgroundColor = 'green';
+                botaoAlternativa.style.color = 'white';
+
+                // Desabilitar outros botões
+                desabilitarBotoesAlternativa();
+            } else {
+                // Resposta incorreta (vermelho)
+                botaoAlternativa.style.backgroundColor = 'red';
+                botaoAlternativa.style.color = 'white';
+            }
+        })
+        .catch(error => {
+            alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
+        });
+    } catch (error) {
+        console.error('Erro ao processar resposta:', error.message);
+    }
+}
+
+// Função para desabilitar os botões de alternativa
+function desabilitarBotoesAlternativa() {
+    // Obter todos os botões de alternativa
+    var botoesAlternativa = document.getElementsByClassName("alternativa");
+
+    // Iterar sobre os botões e desabilitar
+    for (var i = 0; i < botoesAlternativa.length; i++) {
+        botoesAlternativa[i].disabled = true;
+    }
+}
+
+
+// Função para consultar a requisição
+function consultarRequisicao(idRequisicao) {
+    try {
+  
+
+        fetch(`http://localhost:5084/api/Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Consulta de requisição falhou");
+            }
+        })
+        .then(function (requisicao) {
+            // Formatar a data para exibição amigável
+            var dataInicioFormatada = new Date(requisicao.dataInicio).toLocaleString();
+
+            // Limpar o intervalo anterior antes de iniciar um novo
+            clearInterval(intervalId);
+
+            // Atualizar o conteúdo do elemento p com as informações recebidas
+            var paragrafoStatus = document.getElementById("paragrafoStatus");
+
+            switch (requisicao.status) {
+                case 1:
+                    // Requisição na fila
+                    paragrafoStatus.innerHTML = "Your question is being analyzed and will be sent to the GPT soon.";
+                    break;
+                case 6:
+                    // GPT processando
+                    paragrafoStatus.innerHTML = "The GPT is processing your question. Please wait.";
+                    break;
+                case 11:
+                    // Se o status for 11, chamar a função para consultar a pergunta
+                    consultarPergunta(idRequisicao);
+                    break;
+                default:
+                    // Erro na requisição
+                    paragrafoStatus.innerHTML = "Request error. Please change the input text and try again.";
+                    break;
+            }
+
+            // Se o status não for 11, iniciar o intervalo a cada 5 segundos
+            if (requisicao.status !== 11) {
+                intervalId = setInterval(function () {
+                    consultarRequisicao(idRequisicao);
+                }, 5000); // 5000 milissegundos = 5 segundos
+            }
+        })
+        .catch(function (error) {
+            // Lógica para lidar com erros na consulta de requisição
+            alert("Ocorreu um erro na consulta de requisição: " + error.message);
+        });
+    } catch (error) {
+        console.error('Erro ao consultar requisição:', error.message);
+    }
+}
+
+
+
+    // Função para enviar o formulário
+function enviarFormulario() {
+    try {
+
+        // Obter o valor do campo do formulário
+        var textoEntrada = document.getElementById("textoEntrada").value;
+
+        // Criar um objeto FormData
+        var formData = new FormData();
+        formData.append('textoEntrada', textoEntrada);
+
+        fetch("http://localhost:5084/api/Requisicoes/IniciarRequisicao", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+        .then(function (response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error("Requisição falhou");
+            }
+        })
+        .then(function (idRequisicao) {
+            // Remover aspas do início e do fim da string (se existirem)
+            idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
+
+            // Chamar a função para consultar a requisição
+            consultarRequisicao(idRequisicao);
+        })
+        .catch(function (error) {
+            // Alterar o conteúdo do elemento p em caso de erro
+            document.getElementById("paragrafoStatus").innerHTML = `<strong>Erro na requisição:</strong> ${error.message}`;
+        });
+    } catch (error) {
+        console.error('Erro ao enviar formulário:', error.message);
+    }
+}
+
+
+  async function consultarPerguntas() {
+    try {
+        
+
+        const response = await fetch('http://localhost:5084/api/Requisicoes/ConsultarPerguntas', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const perguntas = await response.json();
+
+        // Chama a função para criar a tabela com base nos dados
+        criarTabela(perguntas);
+
+    } catch (error) {
+        console.error('Erro na consulta de perguntas:', error.message);
+    }
+}
+
+
+
+  async function pesquisarTags() {
+    try {
+        const inputElement = document.getElementById('pesquisaTags');
+        const searchTerm = inputElement.value;
+
+        if (searchTerm === '') {
+            // Se estiver vazio, execute carregarTags()
+            carregarTags();
+            return;
+        } 
+
+
+        const response = await fetch(`http://localhost:5084/api/Requisicoes/ProcurarTAG?texto=${searchTerm}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const tags = await response.json();
+
+        // Chama a função para criar a lista de TAGs com base nos dados
+        criarListaDeTags(tags);
+
+    } catch (error) {
+        console.error('Erro ao pesquisar TAGs:', error.message);
+    }
+}
+
+
 
     function criarTabela(perguntas) {
         const tabela = document.getElementById('tabelaPerguntas');
@@ -63,18 +404,18 @@
             idCelula.setAttribute('data-id-requisicao', pergunta.requisicaoId); // Usar o ID da requisição aqui
             idCelula.textContent = pergunta.requisicaoId;
 
-
-
-
             const conteudoCelula = document.createElement('td');
             conteudoCelula.textContent = pergunta.conteudo;
 
+            const tagsCelula = document.createElement('td');
+            const tagsTexto = pergunta.tags.join(', '); // Unir os textos das tags com vírgula e espaço
+            tagsCelula.textContent = tagsTexto;
+
             const acaoCelula = document.createElement('td');
             const botaoAcao = document.createElement('button');
-            botaoAcao.textContent = 'Consultar';
+            botaoAcao.textContent = 'Responder';
             botaoAcao.onclick = function () {
                 const idRequisicao = idCelula.textContent;
-
                 consultarPerguntaLista(idRequisicao);
             };
 
@@ -82,6 +423,7 @@
             row.appendChild(numeroCelula);
             row.appendChild(idCelula);
             row.appendChild(conteudoCelula);
+            row.appendChild(tagsCelula);
             row.appendChild(acaoCelula);
             acaoCelula.appendChild(botaoAcao);
 
@@ -90,26 +432,28 @@
         });
     }
 
-    let intervalId;
+
 
     function consultarPerguntaLista(idRequisicao) {
-      idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
+    idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
 
-      console.log("Consultando pergunta:", idRequisicao);
 
-        fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
-            method: "GET"
-        })
+
+    fetch(`http://localhost:5084/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
         .then(function (response) {
             if (response.ok) {
                 return response.json();
             } else {
-      console.log("Consultando pergunta:", idRequisicao);
-
                 throw new Error("Consulta de pergunta falhou");
             }
         })
         .then(function (pergunta) {
+            console.log(pergunta);
             var divPergunta = document.createElement("div");
             divPergunta.className = "home-questao";
 
@@ -155,50 +499,126 @@
         .catch(function (error) {
             alert("Ocorreu um erro na consulta de pergunta: " + error.message);
         });
+}
+
+
+// Função para carregar as TAGs ao carregar a página
+async function carregarTags() {
+    try {
+         let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RlIiwianRpIjoiNTMwZmFiNDAtOWEzMy00NDc2LTk5ZWItZTcwMDk0NjE3MmU0IiwiZXhwIjoxNzAzMTgzNjM2fQ.HdDtxjeIxLmfXMkzyCXonrPek0yiBuSxBz48VLpidcg";
+
+            console.log(token);
+     const response = await fetch('http://localhost:5084/api/Requisicoes/RetornarTAGs', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const tags = await response.json();
+
+        // Chama a função para criar a lista de TAGs com base nos dados
+        criarListaDeTags(tags);
+
+    } catch (error) {
+        console.error('Erro ao carregar TAGs:', error);
+    }
+}
+
+
+    // Função para criar a lista de TAGs no HTML
+    function criarListaDeTags(tags) {
+        const listaDeTags = document.getElementById('listaDeTags');
+
+        // Limpa o conteúdo atual da lista
+        listaDeTags.innerHTML = '';
+
+        // Itera sobre as TAGs e adiciona itens à lista
+        tags.forEach(tag => {
+            const itemDaLista = document.createElement('li');
+            itemDaLista.textContent = tag.texto; // Substitua 'texto' pelo nome da propriedade da TAG
+
+            // Adiciona o evento de clique
+            itemDaLista.addEventListener('click', function () {
+                // Chama a função para fazer o POST no endpoint
+                enviarTagParaPerguntas(tag.id);
+                obterEAtualizarTagsRelacionadas(tag.id);
+
+            });
+
+            // Adiciona o item à lista
+            listaDeTags.appendChild(itemDaLista);
+        });
     }
 
-  function processarResposta(resposta, alternativaId) {
-    var formData = new FormData();
-    formData.append('IdPergunta', resposta.perguntaId);
-    formData.append('IdResposta', resposta.id);
+    // Função para enviar a TAG para o endpoint PerguntasPorTags
+// Função para enviar a TAG para o endpoint PerguntasPorTags
+async function enviarTagParaPerguntas(tag) {
+    try {
+        // Crie um objeto FormData para enviar dados como 'form-data'
+        var formData = new FormData();
 
-    fetch('http://24.199.100.244:8002/api/Requisicoes/ResponderPergunta', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Verificar se a resposta é verdadeira ou falsa
-        var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
+        formData.append('tagId', tag);
+
+        console.log(formData);
+
       
 
-        // Obter o botão de alternativa pelo id e aplicar o estilo correspondente
-        var botaoAlternativa = document.getElementById(alternativaId);
-        if (data) {
-            // Resposta correta (verde)
-            botaoAlternativa.style.backgroundColor = 'green';
-            botaoAlternativa.style.color = 'white';
+        const response = await fetch('http://localhost:5084/api/Requisicoes/PerguntasPorTags', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
 
-            // Desabilitar outros botões
-            desabilitarBotoesAlternativa();
-        } else {
-            // Resposta incorreta (vermelho)
-            botaoAlternativa.style.backgroundColor = 'red';
-            botaoAlternativa.style.color = 'white';
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
         }
-    })
-    .catch(error => {
-        alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
-    });
-}
 
-function desabilitarBotoesAlternativa() {
-    // Obter todos os botões de alternativa
-    var botoesAlternativa = document.getElementsByClassName("alternativa");
+        const perguntas = await response.json();
 
-    // Iterar sobre os botões e desabilitar
-    for (var i = 0; i < botoesAlternativa.length; i++) {
-        botoesAlternativa[i].disabled = true;
+        console.log(perguntas);
+        criarTabela(perguntas);
+        // Faça o que for necessário com as perguntas retornadas
+
+    } catch (error) {
+        console.error('Erro ao enviar TAG para PerguntasPorTags:', error.message);
     }
 }
+
+
+// Função para obter TAGs relacionadas e atualizar a lista
+async function obterEAtualizarTagsRelacionadas(tagId) {
+  
+    try {
+
+        const response = await fetch(`http://localhost:5084/api/Requisicoes/TagsRelacionadas?tagId=${tagId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const tagsRelacionadas = await response.json();
+
+        // Chama a função para criar a lista de TAGs com base nas TAGs relacionadas
+        criarListaDeTags(tagsRelacionadas);
+
+    } catch (error) {
+        console.error('Erro ao obter TAGs relacionadas:', error.message);
+    }
+}
+
+
+
+
+    carregarTags();
+
 </script>
