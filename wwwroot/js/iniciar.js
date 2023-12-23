@@ -1,0 +1,2 @@
+carregarTags();
+consultarPerguntas();

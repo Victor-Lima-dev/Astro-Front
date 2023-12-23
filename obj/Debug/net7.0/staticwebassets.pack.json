@@ -13,8 +13,32 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\iniciar.js",
+      "PackagePath": "staticwebassets\\js\\iniciar.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\perguntas.js",
+      "PackagePath": "staticwebassets\\js\\perguntas.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\requisicao.js",
+      "PackagePath": "staticwebassets\\js\\requisicao.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\responder.js",
+      "PackagePath": "staticwebassets\\js\\responder.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\tags.js",
+      "PackagePath": "staticwebassets\\js\\tags.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\variaveis.js",
+      "PackagePath": "staticwebassets\\js\\variaveis.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\visibilidade.js",
+      "PackagePath": "staticwebassets\\js\\visibilidade.js"
     },
     {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\lib\\bootstrap\\LICENSE",

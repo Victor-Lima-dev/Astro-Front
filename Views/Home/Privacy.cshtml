@@ -45,23 +45,21 @@
     <ul id="listaDeTags" class="d-none"></ul>
 </div>
 
-<ul id="listaDePerguntas"></ul>
-
-<h3>Perguntas Selecionadas</h3>
-    <ul id="listaPerguntasSelecionadas"></ul>
-
-<button id="btnEnviarLista" onclick="enviarListaPerguntas()">Enviar Lista</button>
-<!-- Adicione esses inputs no seu HTML -->
-<!-- Adicione esses inputs no seu HTML dentro de um formulário -->
-<form id="formularioPerguntas">
-    <label for="inputNome">Nome:</label>
-    <input type="text" id="inputNome" name="nome" placeholder="Digite o nome">
-
-    <label for="inputDescricao">Descrição:</label>
-    <input type="text" id="inputDescricao" name="descricao" placeholder="Digite a descrição">
-</form>
-
-
+<table class="table perguntasElemento d-none" id="tabelaPerguntas">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="hidden">ID</th>
+            <th scope="col">Conteúdo</th>
+            <th scope="col">TAGs</th>
+            <th scope="col">Ação</th>
+            <!-- Adicione mais colunas conforme necessário -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Os dados da tabela serão inseridos aqui dinamicamente -->
+    </tbody>
+</table>
 
 <div id="paragrafoStatus">
     <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
@@ -342,8 +340,7 @@ function enviarFormulario() {
         const perguntas = await response.json();
 
         // Chama a função para criar a tabela com base nos dados
-        //criarTabela(perguntas);
-        criarListaPerguntas(perguntas);
+        criarTabela(perguntas);
 
     } catch (error) {
         console.error('Erro na consulta de perguntas:', error.message);
@@ -384,10 +381,6 @@ function enviarFormulario() {
     }
 }
 
-
-
-// Conjunto para armazenar IDs das perguntas selecionadas
-//const perguntasSelecionadas = new Set();
 
 
     function criarTabela(perguntas) {
@@ -443,6 +436,8 @@ function enviarFormulario() {
 
     function consultarPerguntaLista(idRequisicao) {
     idRequisicao = idRequisicao.replace(/^"(.*)"$/, "$1");
+
+
 
     fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${idRequisicao}`, {
         method: "GET",
@@ -559,11 +554,18 @@ async function carregarTags() {
         });
     }
 
-// Função para enviar a tag para as perguntas
+    // Função para enviar a TAG para o endpoint PerguntasPorTags
+// Função para enviar a TAG para o endpoint PerguntasPorTags
 async function enviarTagParaPerguntas(tag) {
     try {
+        // Crie um objeto FormData para enviar dados como 'form-data'
         var formData = new FormData();
+
         formData.append('tagId', tag);
+
+        console.log(formData);
+
+      
 
         const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
             method: 'POST',
@@ -580,7 +582,8 @@ async function enviarTagParaPerguntas(tag) {
         const perguntas = await response.json();
 
         console.log(perguntas);
-        criarListaPerguntas(perguntas);
+        criarTabela(perguntas);
+        // Faça o que for necessário com as perguntas retornadas
 
     } catch (error) {
         console.error('Erro ao enviar TAG para PerguntasPorTags:', error.message);
@@ -588,95 +591,6 @@ async function enviarTagParaPerguntas(tag) {
 }
 
 
-
-// Array para armazenar IDs das perguntas selecionadas
-let perguntasSelecionadas = [];
-
-
-
-
-
-// Função para criar lista dinâmica de perguntas
-function criarListaPerguntas(perguntas) {
-    const listaPerguntas = document.getElementById('listaDePerguntas');
-    const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
-
-    // Limpa o conteúdo atual das listas
-    listaPerguntas.innerHTML = '';
-    listaPerguntasSelecionadas.innerHTML = '';
-
-    perguntas.forEach((pergunta) => {
-        const itemLista = document.createElement('li');
-
-        // Cria um checkbox para cada pergunta
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = pergunta.id;
-        checkbox.addEventListener('change', () => handleCheckboxChange(checkbox));
-
-        // Adiciona o texto da pergunta ao lado do checkbox
-        const label = document.createElement('label');
-        label.textContent = pergunta.conteudo;
-
-        // Adiciona o checkbox e o texto ao item da lista
-        itemLista.appendChild(checkbox);
-        itemLista.appendChild(label);
-
-        // Adiciona o item da lista à lista de perguntas
-        listaPerguntas.appendChild(itemLista);
-    });
-
-    // Exibe as perguntas selecionadas na lista separada
-    perguntasSelecionadas.forEach((perguntaSelecionada) => {
-        const itemSelecionado = document.createElement('li');
-        itemSelecionado.textContent = `${perguntaSelecionada.texto} (ID: ${perguntaSelecionada.id})`;
-        listaPerguntasSelecionadas.appendChild(itemSelecionado);
-    });
-}
-
-// Função para atualizar as listas na página
-function atualizarListas() {
-    // Limpar a lista de perguntas selecionadas no HTML
-    const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
-    listaPerguntasSelecionadas.innerHTML = '';
-
-    // Desmarcar todos os checkboxes
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-
-    // Limpar o array de perguntas selecionadas
-    perguntasSelecionadas = [];
-}
-
-// Função para lidar com a alteração do estado do checkbox
-function handleCheckboxChange(checkbox) {
-    const idPergunta = checkbox.value;
-    const textoPergunta = checkbox.nextSibling.textContent;
-
-    // Verifica se o checkbox foi marcado ou desmarcado
-    if (checkbox.checked) {
-        // Se marcado, adiciona o ID e o texto à lista de perguntas selecionadas
-        perguntasSelecionadas.push({ id: idPergunta, texto: textoPergunta });
-    } else {
-        // Se desmarcado, remove o item da lista de perguntas selecionadas
-        perguntasSelecionadas = perguntasSelecionadas.filter(item => item.id !== idPergunta);
-    }
-
-    // Atualiza a exibição das perguntas selecionadas na lista separada
-    const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
-    listaPerguntasSelecionadas.innerHTML = '';
-
-    perguntasSelecionadas.forEach((perguntaSelecionada) => {
-        const itemSelecionado = document.createElement('li');
-        itemSelecionado.textContent = `${perguntaSelecionada.texto} (ID: ${perguntaSelecionada.id})`;
-        listaPerguntasSelecionadas.appendChild(itemSelecionado);
-    });
-
-    // Exibe os IDs e textos das perguntas selecionadas no console (pode ser removido após testes)
-    console.log('Perguntas Selecionadas:', perguntasSelecionadas);
-}
 // Função para obter TAGs relacionadas e atualizar a lista
 async function obterEAtualizarTagsRelacionadas(tagId) {
   
@@ -702,39 +616,7 @@ async function obterEAtualizarTagsRelacionadas(tagId) {
     }
 }
 
-// Função para enviar a lista de perguntas selecionadas para o endpoint
-async function enviarListaPerguntas() {
-    try {
-        const listaPerguntasSelecionadas = perguntasSelecionadas.map(pergunta => pergunta.id);
 
-        // Use o FormData para enviar dados do formulário
-        const formData = new FormData(document.getElementById('formularioPerguntas'));
-
-        // Adicione a lista de perguntas selecionadas ao FormData como um campo JSON
-        formData.append('lista', JSON.stringify(listaPerguntasSelecionadas));
-
-        const response = await fetch('http://localhost:5084/api/Listas/ReceberLista', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`, // Adicione o token JWT, se necessário
-            },
-            body: formData,
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.statusText}`);
-        }
-
-        const resultado = await response.json();
-        console.log('Resposta da API:', resultado);
-
-        // Limpar a lista de perguntas selecionadas após o envio bem-sucedido
-        perguntasSelecionadas = [];
-        atualizarListas(); // Função que atualiza as listas na página
-    } catch (error) {
-        console.error('Erro ao enviar lista de perguntas:', error.message);
-    }
-}
 
 
     carregarTags();

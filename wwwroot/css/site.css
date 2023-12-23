@@ -35,9 +35,20 @@ main {
   
   align-items: center;
   flex-direction: column;
+
+  /* usar uma cor bem clarinha */
+
+
+  border: 40px;
+
+  padding: 1rem;
+
+  gap: 1rem;
  
-  gap: 5rem;
+
 }
+
+/* criar variaveis de cor */
 
 
 
@@ -48,11 +59,25 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  background-color: #f2f2f2;
+
+  padding: 1rem;
+
+  border-radius: 20px;
 }
 
 .home-status
 {
   text-align: center;
+
+  
+  padding: 2rem;
+
+  border-radius: 20px;
+
+    background-color: aliceblue;
+
   
 }
 
@@ -66,7 +91,6 @@ main {
 
 .home-alternativas
 {
-
   display: flex;
   justify-content: space-between;
   gap: .5rem;
@@ -103,19 +127,122 @@ li
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  align-items: center;
 
-  margin-top: 2rem;
+  
+ 
 }
 
-.perguntas > button
+#botaoMostrarTags, #botaoMostrarPerguntas
 {
-  background-color: #258cfb;
-  padding: .5rem;
-  border-radius: 5px;
-  color: white;
+  width: 10rem;
 }
 
 .hidden
 {
   display: none;
+}
+
+.perguntasContainer
+{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+
+}
+
+.pergunta-card
+{
+  cursor: pointer;
+  width: 25rem;
+  border-radius: 20px;
+
+  background-color: aliceblue;
+
+  padding: .3rem;
+}
+
+.pergunta-card > div
+{
+  padding: .5rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  transition: all .3s ease-in-out;
+
+
+}
+
+/* hover */
+
+.pergunta-card:hover
+{
+  /* colocar uma cor leve, mas mais escura que aliceblue */
+  background-color: #e6f0ff;
+
+}
+
+
+.tag-pergunta 
+{
+  background-color: #258cfb;
+  padding: .5rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.tag-ul
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .1rem;
+}
+
+.home-enunciado
+{
+  text-align: center;
+}
+
+.home-questao
+{
+
+  border-radius: 20px;
+  padding: .8rem;
+
+  background-color: aliceblue;
+}
+
+.alternativa
+{
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.titulo
+{
+  text-align: center;
+  /* cor que combine com alice blue */
+  color: #258cfb;
+  /* espaço entre as letras */
+  letter-spacing: 1px;
+
+  /* bold*/
+  font-weight: bold;
+}
+
+.home-inputBox
+{
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+}
+
+.input
+{
+  border-radius: 10px;
+  width: 50%;
 }
