@@ -110,7 +110,7 @@ async function enviarTagParaPerguntas(tag) {
 
         const perguntas = await response.json();
 
-        criarTabela(perguntas);
+        criarCards(perguntas);
      
 
     } catch (error) {
