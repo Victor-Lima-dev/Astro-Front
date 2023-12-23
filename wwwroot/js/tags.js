@@ -37,7 +37,7 @@ async function pesquisarTags() {
 async function carregarTags() {
     try {
     
-        const response = await fetch('http://localhost:5084/api/Requisicoes/RetornarTAGs', {
+        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/RetornarTAGs', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -61,7 +61,7 @@ async function carregarTags() {
 async function carregarTagsPaginacao() {
     try {
         
-        const response = await fetch(`http://localhost:5084/api/Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
