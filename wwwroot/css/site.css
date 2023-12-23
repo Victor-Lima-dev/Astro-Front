@@ -20,6 +20,8 @@ html {
 body {
   margin-bottom: 60px;
   font-size: 1.15rem;
+  
+  background-color: #f2f2f2;
 }
 
 main {
@@ -27,6 +29,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  
 }
 
 .main
@@ -45,6 +48,7 @@ main {
 
   gap: 1rem;
  
+  
 
 }
 
@@ -60,11 +64,11 @@ main {
   flex-direction: column;
   gap: 2rem;
 
-  background-color: #f2f2f2;
 
-  padding: 1rem;
+  padding: .5rem;
 
   border-radius: 20px;
+ 
 }
 
 .home-status
@@ -245,4 +249,12 @@ li
 {
   border-radius: 10px;
   width: 50%;
+}
+
+.home-botoes
+{
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
