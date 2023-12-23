@@ -115,14 +115,7 @@ li
   list-style: none;
 }
 
-#listaDeTags > li
-{
-  background-color: #258cfb;
-  padding: .5rem;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-}
+
 
 .perguntas
 {

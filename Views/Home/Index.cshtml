@@ -55,8 +55,9 @@
 
     <div id="pesquisa" class="d-none">
         <label for="pesquisaTags">Pesquisar Tags:</label>
+        <button onclick="aumentarQuantidadeTAGs()">Ver Mais</button>
         <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
-        <button onclick="carregarTags()">Limpar</button>
+        <button onclick="resetarQuantidadeTAGs(), consultarPerguntas()">Limpar</button>
     </div>
 
     <ul id="listaDeTags" class="d-none"></ul>

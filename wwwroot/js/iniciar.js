@@ -1,2 +1,2 @@
-carregarTags();
+carregarTagsPaginacao();
 consultarPerguntas();

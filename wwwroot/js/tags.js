@@ -5,7 +5,7 @@ async function pesquisarTags() {
 
         if (searchTerm === '') {
             // Se estiver vazio, execute carregarTags()
-            carregarTags();
+            carregarTagsPaginacao();
             return;
         }
 
@@ -36,10 +36,8 @@ async function pesquisarTags() {
 // Função para carregar as TAGs ao carregar a página
 async function carregarTags() {
     try {
-
-
-        console.log(token);
-        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/RetornarTAGs', {
+    
+        const response = await fetch('http://localhost:5084/api/Requisicoes/RetornarTAGs', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -59,6 +57,45 @@ async function carregarTags() {
     }
 }
 
+// Função para carregar as TAGs ao carregar a página
+async function carregarTagsPaginacao() {
+    try {
+        
+        const response = await fetch(`http://localhost:5084/api/Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const tags = await response.json();
+
+        // Chama a função para criar a lista de TAGs com base nos dados
+        criarListaDeTags(tags);
+
+    } catch (error) {
+        console.error('Erro ao carregar TAGs:', error);
+    }
+}
+
+//criar uma função que aumenta a variavel quantidade e chama a função carregarTagsPaginacao
+
+function aumentarQuantidadeTAGs() {
+    quantidade += 3;
+    carregarTagsPaginacao();
+}
+
+//criar uma função que reseta a variavel quantidade e chama a função carregarTagsPaginacao
+
+function resetarQuantidadeTAGs() {
+    quantidade = 3;
+    carregarTagsPaginacao();
+}
+
+
 
 // Função para criar a lista de TAGs no HTML
 function criarListaDeTags(tags) {
@@ -71,6 +108,10 @@ function criarListaDeTags(tags) {
     tags.forEach(tag => {
         const itemDaLista = document.createElement('li');
         itemDaLista.textContent = tag.texto; // Substitua 'texto' pelo nome da propriedade da TAG
+
+         // Adiciona as classes do Bootstrap
+         itemDaLista.classList.add('btn', 'btn-primary'); // Adicione as classes conforme necessário
+
 
         // Adiciona o evento de clique
         itemDaLista.addEventListener('click', function () {
@@ -93,8 +134,6 @@ async function enviarTagParaPerguntas(tag) {
         formData.append('tagId', tag);
 
         console.log(formData);
-
-
 
         const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
             method: 'POST',

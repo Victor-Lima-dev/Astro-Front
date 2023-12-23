@@ -4,3 +4,4 @@ let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RlIi
 let intervalId; // Variável para armazenar o ID do intervalo
 
 
+let quantidade = 3;
