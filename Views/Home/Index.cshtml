@@ -9,14 +9,16 @@
 
         <h1 class="home-titulo titulo">AstroGenerator</h1>
 
-        <p class="home-paragrafo paragrafo animate__animated animate__fadeIn">Use AstroGenerator to explore and learn about different astronomical
+        <p class="home-paragrafo paragrafo animate__animated animate__fadeIn">Use AstroGenerator to explore and learn
+            about different astronomical
             topics.
             Insert TAGs, base texts and references, click 'Generate' and instantly get questions and answers generated.
             Uncover the secrets of the universe in a practical and intuitive way.</p>
 
         <div class="home-inputBox perguntasElemento" id="inputElemento">
             <input class="home-input input form-control" type="text" id="textoEntrada">
-            <button type="button" class="home-botao botao btn btn-primary" onclick="enviarFormulario()">Generate</button>
+            <button type="button" class="home-botao botao btn btn-primary"
+                onclick="enviarFormulario()">Generate</button>
 
         </div>
 
@@ -35,17 +37,17 @@
         <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
     </div>
 
-      <div id="mensagemResposta">
-        
+    <div id="mensagemResposta">
+
     </div>
 
-      <div class="home-botoes animate__animated animate__fadeIn">
+    <div class="home-botoes animate__animated animate__fadeIn">
 
-            <button class="d-none animate__animated animate__fadeIn botaoVoltar" id="botaoMostrarPerguntas"></button>
+        <button class="btn btn-primary d-none animate__animated animate__fadeIn botaoVoltar" id="botaoMostrarPerguntas"></button>
 
-        </div>
+    </div>
 
-  
+
 
 </div>
 
@@ -55,14 +57,15 @@
 <div class="perguntas perguntasElemento animate__animated animate__fadeIn">
 
 
-    <div id="pesquisa" class="animate__animated animate__fadeIn">
-        <label for="pesquisaTags">Pesquisar Tags:</label>
-        <button class="home-botao botao btn btn-primary" onclick="aumentarQuantidadeTAGs()">Ver Mais</button>
+    <div id="pesquisa" class="animate__animated animate__fadeIn tagsBox">
+        <label class="titulo" for="pesquisaTags">Pesquisar Tags:</label>
         <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
-        <button class="home-botao botao btn btn-primary" onclick="resetarQuantidadeTAGs(), consultarPerguntas()">Limpar</button>
+        <button class="home-botao botao btn btn-primary"
+            onclick="resetarQuantidadeTAGs(), consultarPerguntas()">Limpar</button>
+        <button class="home-botao botao btn btn-primary" onclick="aumentarQuantidadeTAGs()">Mais</button>
     </div>
 
-    <ul id="listaDeTags" ></ul>
+    <ul id="listaDeTags"></ul>
 </div>
 
-<div class="card-container perguntasContainer perguntasElemento" id="cardContainer" ></div>
+<div class="card-container perguntasContainer perguntasElemento" id="cardContainer"></div>

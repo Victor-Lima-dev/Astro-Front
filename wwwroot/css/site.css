@@ -253,3 +253,10 @@ li
 }
 
 
+.tagsBox
+{
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+}
