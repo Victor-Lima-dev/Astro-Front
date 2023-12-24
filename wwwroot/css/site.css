@@ -44,12 +44,11 @@ main {
 
   border: 40px;
 
-  padding: 1rem;
+  padding: .5rem;
 
-  gap: 1rem;
+  gap: .5rem;
  
   
-
 }
 
 /* criar variaveis de cor */
@@ -91,6 +90,18 @@ main {
     width: auto;
     height: auto;
   }
+
+  
+
+  #pesquisa
+  {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
 }
 
 .home-alternativas
@@ -259,4 +270,9 @@ li
   gap: .5rem;
   justify-content: center;
   align-items: center;
+}
+
+#pesquisa > button
+{
+  width: 10rem;
 }
