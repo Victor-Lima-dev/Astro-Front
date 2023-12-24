@@ -44,12 +44,23 @@ function interacoesDomAposResposta(data, alternativaId) {
 
         // Desabilitar outros botões
         desabilitarBotoesAlternativa();
+
+        // Adicionar mensagem de resposta correta
+        var mensagemResposta = document.getElementById('mensagemResposta');
+        mensagemResposta.textContent = 'Resposta correta!';
+        mensagemResposta.style.color = 'green';
     } else {
         // Resposta incorreta (vermelho)
         botaoAlternativa.style.backgroundColor = 'red';
         botaoAlternativa.style.color = 'white';
+
+        // Adicionar mensagem de resposta incorreta
+        var mensagemResposta = document.getElementById('mensagemResposta');
+        mensagemResposta.textContent = 'Resposta incorreta!';
+        mensagemResposta.style.color = 'red';
     }
 }
+
 // Função para desabilitar os botões de alternativa
 function desabilitarBotoesAlternativa() {
     // Obter todos os botões de alternativa
@@ -59,4 +70,12 @@ function desabilitarBotoesAlternativa() {
     for (var i = 0; i < botoesAlternativa.length; i++) {
         botoesAlternativa[i].disabled = true;
     }
+}
+
+
+// Função para resetar a mensagem de resposta
+function resetarMensagemResposta() {
+    var mensagemResposta = document.getElementById('mensagemResposta');
+    mensagemResposta.textContent = '';  // Limpa o texto
+    mensagemResposta.style.color = '';  // Reseta a cor do texto
 }

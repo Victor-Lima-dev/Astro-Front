@@ -110,7 +110,7 @@ function criarListaDeTags(tags) {
         itemDaLista.textContent = tag.texto; // Substitua 'texto' pelo nome da propriedade da TAG
 
          // Adiciona as classes do Bootstrap
-         itemDaLista.classList.add('btn', 'btn-primary'); // Adicione as classes conforme necessário
+         itemDaLista.classList.add('btn', 'btn-primary', 'animate__animated', 'animate__fadeIn'); // Adicione as classes conforme necessário
 
 
         // Adiciona o evento de clique

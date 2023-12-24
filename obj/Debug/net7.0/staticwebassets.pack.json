@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\animacoes.js",
+      "PackagePath": "staticwebassets\\js\\animacoes.js"
+    },
+    {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\iniciar.js",
       "PackagePath": "staticwebassets\\js\\iniciar.js"
     },

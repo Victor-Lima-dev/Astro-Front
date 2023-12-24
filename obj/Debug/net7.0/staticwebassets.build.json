@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VVcF5rH8N1VQFRRuQWEv8yKDa2RUFwvd0vm/6p7avCE=",
+  "Hash": "efNad0lP7xQCjq6DaFd4u5DoIpemAf4EwFIFa43mnTM=",
   "Source": "FrontAstro",
   "BasePath": "_content/FrontAstro",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\animacoes.js",
+      "SourceId": "FrontAstro",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\",
+      "BasePath": "_content/FrontAstro",
+      "RelativePath": "js/animacoes.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\animacoes.js"
     },
     {
       "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\iniciar.js",

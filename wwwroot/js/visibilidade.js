@@ -19,12 +19,24 @@ function toggleElement(elementClass) {
 
     // Itera sobre os elementos encontrados pela classe
     for (const element of elements) {
-        element.classList.toggle('d-none');
+        element.classList.toggle('animate__fadeOut');
+
+        //delay de meio segundo para dar o toggle na d-none
+
+
+        setTimeout(() => {
+            element.classList.toggle('d-none');
+        }, 500);
+        
+   
+       
     }
 }
 
-function toggleDivInput() {
-    const elements = document.getElementsByClassName('home-inputBox');
+
+
+function toggleBotaoVoltar() {
+    var elements = document.getElementById("botaoMostrarPerguntas");
 
   
     // Itera sobre os elementos encontrados pela classe
@@ -34,50 +46,40 @@ function toggleDivInput() {
 }
 
 
-function modificarTextoBotaoMostrarPerguntas() {
-    var botaoMostrarPerguntas = document.getElementById("botaoMostrarPerguntas");
-    if (botaoMostrarPerguntas.textContent == "Perguntas") {
-        botaoMostrarPerguntas.textContent = "Nova Pergunta";
-    } else {
-        botaoMostrarPerguntas.textContent = "Perguntas";
-    }
-}
 
 
 function substituirBotaoMostrarPerguntas() {
+
     var botaoMostrarPerguntas = document.getElementById("botaoMostrarPerguntas");
     botaoMostrarPerguntas.textContent = "Voltar ao inicio";
 
+    botaoMostrarPerguntas.classList.toggle('d-none');
+
+
+//verificar quais classes tem o botaoMostrarPerguntas
+
+    var classes = botaoMostrarPerguntas.classList;
+
+    //se ele tiver a classe animate__fadeOut, remover ela
+    
+    if (classes.contains("animate__fadeOut")) {
+        classes.remove("animate__fadeOut");
+    }
+
     botaoMostrarPerguntas.onclick = function () {
-       
-        //limpar esse elemento divPergunta
+
         var divPergunta = document.getElementById("divPergunta");
         divPergunta.innerHTML = "";
 
-         toggleElement('home-inputBox');
-         toggleElement('home-status');
+        //recarregar a pagina para voltar ao inicio
 
-         modificarTextoBotaoMostrarPerguntas();
-        resetarBotaoMostrarPerguntas();
-
+        toggleElement('perguntasElemento');
+        toggleElement('botaoVoltar');
+        resetarMensagemResposta();
     }
 }
 
-function resetarBotaoMostrarPerguntas() {
-    var botaoMostrarPerguntas = document.getElementById("botaoMostrarPerguntas");
-    botaoMostrarPerguntas.onclick = function () {
-       
-        //limpar esse elemento divPergunta
-        var divPergunta = document.getElementById("divPergunta");
-        divPergunta.innerHTML = "";
-         toggleElement('home-inputBox');
-         toggleElement('home-status');
-         toggleElement('perguntasElemento');
 
-         modificarTextoBotaoMostrarPerguntas();
-
-    }
-}
 
 //função para resetar o texto de paragrafoStatus para o texto padrão
 
@@ -90,3 +92,4 @@ function resetarParagrafoStatus() {
     var homeStatus = document.getElementById("home-status");
     homeStatus.style.backgroundColor = "aliceblue"
 }
+

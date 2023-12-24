@@ -54,6 +54,10 @@ function gerarElementosPergunta(pergunta) {
     var divPergunta = document.createElement("div");
     divPergunta.className = "home-questao";
 
+    //adicionar as classes 'animate__animated', 'animate__fadeIn'
+
+    divPergunta.classList.add('animate__animated', 'animate__fadeIn');
+
     var divEnunciado = document.createElement("div");
     divEnunciado.className = "home-enunciado";
 
@@ -105,16 +109,18 @@ function criarCards(perguntas) {
 
     perguntas.forEach((pergunta, index) => {
         const card = document.createElement('div');
-        card.classList.add('card', 'mb-3', 'pergunta-card');
+        card.classList.add('card', 'mb-3', 'pergunta-card', 'animate__animated', 'animate__fadeIn');
 
         // Adiciona o evento de clique ao card
         card.addEventListener('click', function () {
             const idRequisicao = pergunta.requisicaoId;
+
             consultarPergunta(idRequisicao);
+
             toggleElement('perguntasElemento');
-            
-            toggleDivInput();
+
             substituirBotaoMostrarPerguntas();
+
         });
 
         const cardBody = document.createElement('div');
@@ -136,6 +142,7 @@ function criarCards(perguntas) {
             tagItem.classList.add('list-inline-item', 'tag-pergunta');
             tagItem.textContent = tag;
             tagsPergunta.appendChild(tagItem);
+            
         });
 
         cardBody.appendChild(numeroPergunta);

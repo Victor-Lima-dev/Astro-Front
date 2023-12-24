@@ -1,39 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div class="main">
+<div class="main animate__animated animate__fadeIn">
 
 
     <div class="home-container">
 
 
-
         <h1 class="home-titulo titulo">AstroGenerator</h1>
 
-        <p class="home-paragrafo paragrafo ">Use AstroGenerator to explore and learn about different astronomical
+        <p class="home-paragrafo paragrafo animate__animated animate__fadeIn">Use AstroGenerator to explore and learn about different astronomical
             topics.
             Insert TAGs, base texts and references, click 'Generate' and instantly get questions and answers generated.
             Uncover the secrets of the universe in a practical and intuitive way.</p>
 
-        <div class="home-inputBox" id="inputElemento">
+        <div class="home-inputBox perguntasElemento" id="inputElemento">
             <input class="home-input input form-control" type="text" id="textoEntrada">
-            <button type="button" class="home-botao botao btn btn-primary" onclick="enviarFormulario(), toggleElement('home-inputBox'), substituirBotaoMostrarPerguntas()">Generate</button>
-
-        </div>
-
-        <div class="home-botoes">
-
-            <button class="btn btn-primary" id="botaoMostrarPerguntas"
-                onclick="toggleElement('perguntasElemento'), toggleElement('home-status'), modificarTextoBotaoMostrarPerguntas()">Perguntas</button>
-            <button id="botaoMostrarTags" class="btn btn-primary perguntasElemento d-none"
-                onclick="toggleTags()">Tags</button>
+            <button type="button" class="home-botao botao btn btn-primary" onclick="enviarFormulario()">Generate</button>
 
         </div>
 
 
     </div>
 
-    <div class="home-status" id="home-status">
+    <div class="home-status perguntasElemento animate__animated animate__fadeIn" id="home-status">
         <div class="home-statusBox">
             <p class="home-paragrafo paragrafo" id="paragrafoStatus">Status This is where the status of
                 the generated question will appear.</p>
@@ -45,22 +35,34 @@
         <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
     </div>
 
-</div>
-
-
-
-<div class="perguntas perguntasElemento d-none">
-
-
-
-    <div id="pesquisa" class="d-none">
-        <label for="pesquisaTags">Pesquisar Tags:</label>
-        <button onclick="aumentarQuantidadeTAGs()">Ver Mais</button>
-        <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
-        <button onclick="resetarQuantidadeTAGs(), consultarPerguntas()">Limpar</button>
+      <div id="mensagemResposta">
+        
     </div>
 
-    <ul id="listaDeTags" class="d-none"></ul>
+      <div class="home-botoes animate__animated animate__fadeIn">
+
+            <button class="d-none animate__animated animate__fadeIn botaoVoltar" id="botaoMostrarPerguntas"></button>
+
+        </div>
+
+  
+
 </div>
 
-<div class="card-container perguntasContainer perguntasElemento d-none" id="cardContainer"></div>
+
+
+
+<div class="perguntas perguntasElemento animate__animated animate__fadeIn">
+
+
+    <div id="pesquisa" class="animate__animated animate__fadeIn">
+        <label for="pesquisaTags">Pesquisar Tags:</label>
+        <button class="home-botao botao btn btn-primary" onclick="aumentarQuantidadeTAGs()">Ver Mais</button>
+        <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
+        <button class="home-botao botao btn btn-primary" onclick="resetarQuantidadeTAGs(), consultarPerguntas()">Limpar</button>
+    </div>
+
+    <ul id="listaDeTags" ></ul>
+</div>
+
+<div class="card-container perguntasContainer perguntasElemento" id="cardContainer" ></div>
