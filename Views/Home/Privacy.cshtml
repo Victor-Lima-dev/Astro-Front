@@ -8,17 +8,19 @@
 
         <h1 class="home-titulo titulo">AstroGenerator</h1>
 
-        <p class="home-paragrafo paragrafo">Use AstroGenerator to explore and learn about different astronomical topics.</p>
+        <p class="home-paragrafo paragrafo">Use AstroGenerator to explore and learn about different astronomical topics.
+        </p>
 
         <div class="home-inputBox">
-            <button type="button" class="home-botao botao" onclick="toggleElement('perguntasElemento')" >Criar Lista</button>
-            <button type="button" class="home-botao botao" onclick="obterListas()">Exibir Listas</button>
+            <button type="button" class="home-botao botao"
+                onclick="toggleElement('perguntasElemento'), consultarPerguntasComCallback(criarListaPerguntas) ,adicionarAnimacaoERemover('cardListas'), toggleElementEntrar('entrarElementos')">Criar
+                Lista</button>
         </div>
 
     </div>
 
     <div class="home-status">
-        <div class="home-statusBox">     
+        <div class="home-statusBox">
         </div>
     </div>
 
@@ -27,45 +29,69 @@
 
 
 <div class="perguntas perguntasElemento d-none">
-    <h1>Perguntas</h1>
 
-    <button onclick="consultarPerguntasParaCriarLista()">Consultar Perguntas para criar Lista</button>
-    <button onclick="toggleTags()">Mostrar/Esconder Tags</button>
 
-    <div id="pesquisa" class="">
-        <label for="pesquisaTags">Pesquisar Tags:</label>
+    <div id="pesquisa" class="animate__animated animate__fadeIn tagsBox">
+
+    
+        <label class="titulo" for="pesquisaTags">Pesquisar Tags:</label>
         <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
-        <button onclick="carregarTags()">Limpar</button>
+        <button class="home-botao botao btn btn-primary"
+            onclick="resetarQuantidadeTAGs(), consultarPerguntasComCallback(criarListaPerguntas)">Limpar</button>
+        <button class="home-botao botao btn btn-primary" onclick="aumentarQuantidadeTAGs()">Mais</button>
     </div>
 
-    <ul id="listaDeTags" class="d-none perguntasElemento"></ul>
-    <ul id="listaDePerguntas"></ul> 
-
-    <h3>Perguntas Selecionadas</h3>
-<ul id="listaPerguntasSelecionadas"></ul>
-
-<button id="btnEnviarLista" onclick="enviarListaPerguntas()">Enviar Lista</button>
-
-<form id="formularioPerguntas">
-    <label for="inputNome">Nome:</label>
-    <input type="text" id="inputNome" name="nome" placeholder="Digite o nome">
-
-    <label for="inputDescricao">Descrição:</label>
-    <input type="text" id="inputDescricao" name="descricao" placeholder="Digite a descrição">
-</form>
-
+    <ul id="listaDeTags" class="d-none perguntasElemento "></ul>
+ 
 </div>
+
+   <div class="selecionarPerguntas ">
+    
+        <ul id="listaDePerguntas"></ul>
+
+<div class="formPerguntasSelecionadas">
+
+    <div>
+
+
+        <ul id="listaPerguntasSelecionadas"></ul>
+
+    </div>
+
+    <form id="formPerguntaSelecionadas" class="perguntasElemento d-none">
+        <h1>Lista</h1>
+        <label for="inputNome">Nome:</label>
+        <input type="text" id="inputNome" name="nome" placeholder="Digite o nome">
+
+        <label for="inputDescricao">Descrição:</label>
+        <input type="text" id="inputDescricao" name="descricao" placeholder="Digite a descrição">
+    </form>
+    <button id="btnEnviarLista" onclick="enviarListaPerguntas()">Enviar Lista</button>
+</div>
+
+    </div>
+
+<div class="caixaResponderLista">
+
+    <div id="divPergunta">
+
+        <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
+
+    
+    </div>
+    <div id="mensagemResposta" class="d-none">
+
+    </div>
+
+    <div id="responderLista" >
+        <!-- Aqui será adicionado dinamicamente o conteúdo da pergunta -->
+    </div>
+</div>
+
 
 
 
 <div id="cardListas">
-    
+
 </div>
 
-
-<script>
-    
-   
-
-
-</script>

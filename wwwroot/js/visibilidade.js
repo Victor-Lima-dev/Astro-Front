@@ -32,6 +32,24 @@ function toggleElement(elementClass) {
        
     }
 }
+function toggleElementEntrar(elementClass) {
+    const elements = document.getElementsByClassName(elementClass);
+
+    // Itera sobre os elementos encontrados pela classe
+    for (const element of elements) {
+        element.classList.toggle('animate__fadein');
+
+        //delay de meio segundo para dar o toggle na d-none
+
+
+        setTimeout(() => {
+            element.classList.toggle('d-none');
+        }, 500);
+        
+   
+       
+    }
+}
 
 
 
@@ -93,3 +111,22 @@ function resetarParagrafoStatus() {
     homeStatus.style.backgroundColor = "aliceblue"
 }
 
+
+// Função para adicionar animação e remover
+function adicionarAnimacaoERemoverCallBack(elementoPaiId, callback) {
+    const elementoPai = document.getElementById(elementoPaiId);
+
+    // Adicionar classes de animação
+    elementoPai.classList.add('animate__animated', 'animate__fadeOut');
+
+    // Aguardar a conclusão da animação (1 segundo)
+    setTimeout(() => {
+        // Remover o elemento pai
+        elementoPai.remove();
+
+        // Executar o callback, se fornecido
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }, 1000);
+}

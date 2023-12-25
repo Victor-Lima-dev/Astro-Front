@@ -21,8 +21,32 @@
       "PackagePath": "staticwebassets\\js\\iniciar.js"
     },
     {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\enviarLista.js",
+      "PackagePath": "staticwebassets\\js\\listas\\enviarLista.js"
+    },
+    {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\listas.js",
       "PackagePath": "staticwebassets\\js\\listas\\listas.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\perguntas.js",
+      "PackagePath": "staticwebassets\\js\\listas\\perguntas.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\requisicoes.js",
+      "PackagePath": "staticwebassets\\js\\listas\\requisicoes.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\responder.js",
+      "PackagePath": "staticwebassets\\js\\listas\\responder.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\tags.js",
+      "PackagePath": "staticwebassets\\js\\listas\\tags.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\visibilidade.js",
+      "PackagePath": "staticwebassets\\js\\listas\\visibilidade.js"
     },
     {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\perguntas.js",

@@ -276,3 +276,92 @@ li
 {
   width: 10rem;
 }
+
+.caixaResponderLista
+{
+ 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+#responderLista
+{
+  background: #e6f0ff;
+  width: 20rem;
+  padding: .5rem;
+  border-radius: 20px;
+}
+
+.caixaResponderLista > #divPergunta > .home-questao
+{
+
+  width: 40rem;
+}
+
+.selecionarPerguntas
+{
+ 
+  display: flex;
+
+
+}
+
+.formPerguntaSelecionadas > div
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+h3
+{
+  text-align: center;
+}
+
+
+
+#formPerguntaSelecionadas
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#listaDePerguntas {
+  max-height: 50rem;
+  overflow-y: auto;
+  gap: .5rem;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 54rem;
+
+}
+
+#cardListas
+{
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pergunta-item
+{
+
+  padding: .5rem;
+  border-radius: 20px;
+ 
+}
+
+.lista-perguntas
+{
+ 
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+}

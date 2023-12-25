@@ -2,7 +2,7 @@
 async function obterListas() {
     try {
     
-        const response = await fetch('http://localhost:5084/api/Listas/RetornarTodasListas', {
+        const response = await fetch('http://24.199.100.244:8002/api/Listas/RetornarTodasListas', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -28,19 +28,34 @@ async function obterListas() {
 
 // Função para criar cards de listas
 function criarCardsDeListas(listas) {
+
     const cardListas = document.getElementById('cardListas');
     cardListas.innerHTML = ''; // Limpa o conteúdo atual
 
     listas.forEach((lista, index) => {
         const card = document.createElement('div');
-        card.classList.add('card', 'mb-3', 'lista-card', 'animate__animated', 'animate__fadeIn');
+        card.classList.add('card', 'mb-3', 'lista-card', 'animate__animated', 'animate__fadeIn','pergunta-card');
+
+
+        //adicionar um event listener para quando o card for clicado, chamar adicionarAnimacaoERemover(elementoPaiId)
+
+         // Adicionar um event listener para quando o card for clicado
+         card.addEventListener('click', () => {
+            // Chamar a função adicionarAnimacaoERemover e, ao finalizar, chamar a responderLista
+            adicionarAnimacaoERemoverCallBack('cardListas', () => responderLista(lista.perguntas));
+        });
 
         const cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
 
+        cardBody.id = "cardLista";
+
+        
+
         const numeroLista = document.createElement('h5');
         numeroLista.classList.add('card-title');
         numeroLista.textContent = `Lista ${index + 1}`;
+
 
         const nomeLista = document.createElement('p');
         nomeLista.classList.add('card-text');
@@ -50,15 +65,40 @@ function criarCardsDeListas(listas) {
         descricaoLista.classList.add('card-text');
         descricaoLista.textContent = `Descrição: ${lista.descricao}`;
 
+        const tagsUnicas = obterTagsUnicas(lista.perguntas);
+
+        const tagsLista = document.createElement('ul');
+        tagsLista.classList.add('list-inline', 'tag-ul');
+
+        tagsUnicas.forEach(tag => {
+            const tagItem = document.createElement('li');
+            tagItem.classList.add('list-inline-item', 'tag-pergunta');
+            tagItem.textContent = tag;
+            tagsLista.appendChild(tagItem);
+        });
+
         cardBody.appendChild(numeroLista);
         cardBody.appendChild(nomeLista);
         cardBody.appendChild(descricaoLista);
+        cardBody.appendChild(tagsLista);
 
         card.appendChild(cardBody);
         cardListas.appendChild(card);
     });
 }
 
+// Função para obter tags únicas de uma lista de perguntas
+function obterTagsUnicas(perguntas) {
+    const tagsUnicas = new Set();
+
+    perguntas.forEach(pergunta => {
+        pergunta.taGs.forEach(tag => {
+            tagsUnicas.add(tag.texto);
+        });
+    });
+
+    return Array.from(tagsUnicas);
+}
 
 
 function criarListaPerguntas(perguntas) {

@@ -1,2 +1,3 @@
 carregarTagsPaginacao();
 consultarPerguntas();
+obterListas();
