@@ -13,7 +13,7 @@ async function enviarListaPerguntas() {
 
        
 
-        const response = await fetch('http://localhost:5084/api/Listas/ReceberLista', {
+        const response = await fetch('http://24.199.100.244:8002/api/Listas/ReceberLista', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`, // Adicione o token JWT, se necessário

@@ -19,7 +19,7 @@ function criarListaPerguntas(perguntas) {
 
         const numeroPergunta = document.createElement('h5');
         numeroPergunta.classList.add('card-title');
-        numeroPergunta.textContent = `Pergunta ${pergunta.id}`;
+        numeroPergunta.textContent = `Pergunta ${pergunta.conteudo}`;
 
         const conteudoPergunta = document.createElement('p');
         conteudoPergunta.classList.add('card-text');
