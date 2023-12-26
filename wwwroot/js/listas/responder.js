@@ -29,6 +29,7 @@ function responderLista(lista) {
 
         // Adiciona a pergunta à lista HTML
         listaHTML.appendChild(perguntaItem);
+        gerarElementosPergunta(pergunta);
     });
 
     // Adiciona a lista HTML ao local para responder a lista

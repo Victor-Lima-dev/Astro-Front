@@ -1,4 +1,4 @@
-async function enviarTagParaPerguntas(tag) {
+async function enviarTagParaPerguntasLista(tag) {
     try {
         // Crie um objeto FormData para enviar dados como 'form-data'
         var formData = new FormData();
