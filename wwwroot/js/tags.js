@@ -133,8 +133,7 @@ async function enviarTagParaPerguntas(tag) {
 
         formData.append('tagId', tag);
 
-        console.log(formData);
-
+    
         const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
             method: 'POST',
             body: formData,

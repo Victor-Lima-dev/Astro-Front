@@ -73,9 +73,3 @@ function desabilitarBotoesAlternativa() {
 }
 
 
-// Função para resetar a mensagem de resposta
-function resetarMensagemResposta() {
-    var mensagemResposta = document.getElementById('mensagemResposta');
-    mensagemResposta.textContent = '';  // Limpa o texto
-    mensagemResposta.style.color = '';  // Reseta a cor do texto
-}

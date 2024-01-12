@@ -69,9 +69,11 @@ function toggleBotaoVoltar() {
 function substituirBotaoMostrarPerguntas() {
 
     var botaoMostrarPerguntas = document.getElementById("botaoMostrarPerguntas");
+    
     botaoMostrarPerguntas.textContent = "Voltar ao inicio";
 
-    botaoMostrarPerguntas.classList.toggle('d-none');
+
+    toggleBotaoVoltar();
 
 
 //verificar quais classes tem o botaoMostrarPerguntas
@@ -91,8 +93,10 @@ function substituirBotaoMostrarPerguntas() {
 
         //recarregar a pagina para voltar ao inicio
 
-        toggleElement('perguntasElemento');
-        toggleElement('botaoVoltar');
+        togglePerguntasElemento();
+
+        toggleBotaoVoltar();
+
         resetarMensagemResposta();
     }
 }
@@ -110,6 +114,16 @@ function resetarParagrafoStatus() {
     var homeStatus = document.getElementById("home-status");
     homeStatus.style.backgroundColor = "aliceblue"
 }
+
+
+// Função para resetar a mensagem de resposta
+function resetarMensagemResposta() {
+    var mensagemResposta = document.getElementById('mensagemResposta');
+    mensagemResposta.textContent = '';  // Limpa o texto
+    mensagemResposta.style.color = '';  // Reseta a cor do texto
+}
+
+
 
 
 // Função para adicionar animação e remover
@@ -130,3 +144,45 @@ function adicionarAnimacaoERemoverCallBack(elementoPaiId, callback) {
         }
     }, 1000);
 }
+
+
+
+// Objeto de estado para controle de visibilidade
+const visibilidadeEstado = {
+    perguntasElemento: true, // true significa visível, false significa invisível
+    botaoVoltar: false, // true significa visível, false significa invisível
+  };
+  
+  // Função para atualizar a visibilidade com base no objeto de estado
+  function atualizarVisibilidade() {
+    for (const elemento in visibilidadeEstado) {
+      const elementos = document.getElementsByClassName(elemento);
+      for (const element of elementos) {
+        if (visibilidadeEstado[elemento]) {
+          element.classList.remove('d-none');
+        } else {
+          element.classList.add('d-none');
+        }
+      }
+    }
+  }
+  
+  // Função para toggle da visibilidade do elemento 'perguntasElemento'
+  function togglePerguntasElemento() {
+    visibilidadeEstado.perguntasElemento = !visibilidadeEstado.perguntasElemento;
+
+    console.log( " PerguntasElemento" +" "+ visibilidadeEstado.perguntasElemento);
+
+    atualizarVisibilidade();
+  }
+  
+
+  // Função para toggle da visibilidade do elemento 'botaoVoltar'
+function toggleBotaoVoltar() {
+    visibilidadeEstado.botaoVoltar = !visibilidadeEstado.botaoVoltar;
+
+    console.log( " BotaoVoltar" +" "+ visibilidadeEstado.botaoVoltar);
+
+    atualizarVisibilidade();
+  }
+  

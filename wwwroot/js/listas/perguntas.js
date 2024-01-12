@@ -2,8 +2,11 @@
 let perguntasSelecionadas = [];
 
 function criarListaPerguntas(perguntas) {
+
     const listaPerguntas = document.getElementById('listaDePerguntas');
     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
+
+    console.log("executou a função criarListaPerguntas()");
 
     // Limpa o conteúdo atual das listas
     listaPerguntas.innerHTML = '';

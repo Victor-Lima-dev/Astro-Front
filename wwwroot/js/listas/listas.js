@@ -30,6 +30,7 @@ async function obterListas() {
 function criarCardsDeListas(listas) {
 
     const cardListas = document.getElementById('cardListas');
+    
     cardListas.innerHTML = ''; // Limpa o conteúdo atual
 
     listas.forEach((lista, index) => {

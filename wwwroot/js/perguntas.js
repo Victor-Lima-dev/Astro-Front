@@ -105,6 +105,7 @@ function gerarElementosPergunta(pergunta) {
 // Função para criar cards de perguntas
 function criarCards(perguntas) {
     const cardContainer = document.getElementById('cardContainer');
+
     cardContainer.innerHTML = ''; // Limpa o conteúdo atual
 
     perguntas.forEach((pergunta, index) => {
@@ -117,7 +118,9 @@ function criarCards(perguntas) {
 
             consultarPergunta(idRequisicao);
 
-            toggleElement('perguntasElemento');
+            //toggleElement('perguntasElemento');
+
+            togglePerguntasElemento();
 
             substituirBotaoMostrarPerguntas();
 
@@ -154,3 +157,35 @@ function criarCards(perguntas) {
     });
 }
 
+
+async function pesquisarQuestoes() {
+    try {
+        const inputElement = document.getElementById('pesquisarQuestoes');
+        const searchTerm = inputElement.value;
+
+        // if (searchTerm === '') {
+        
+        //     consultarPerguntas();
+
+        //    return;
+        //  }
+   
+        const response = await fetch(`http://localhost:5084/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const questoes = await response.json();
+
+
+        criarListaPerguntas(questoes);
+
+    } catch (error) {
+        console.error('Erro ao pesquisar Questoes:', error.message);
+    }
+}
