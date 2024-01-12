@@ -14,6 +14,8 @@ async function consultarPerguntas() {
 
         const perguntas = await response.json();
 
+        console.log("perguntas");
+
         criarCards(perguntas);
 
     } catch (error) {
@@ -106,6 +108,13 @@ function gerarElementosPergunta(pergunta) {
 function criarCards(perguntas) {
     const cardContainer = document.getElementById('cardContainer');
 
+    console.log("cards");
+    //contar quantas perguntas tem
+
+    var quantidadePerguntas = perguntas.length;
+
+    console.log(quantidadePerguntas);
+
     cardContainer.innerHTML = ''; // Limpa o conteúdo atual
 
     perguntas.forEach((pergunta, index) => {
@@ -114,11 +123,10 @@ function criarCards(perguntas) {
 
         // Adiciona o evento de clique ao card
         card.addEventListener('click', function () {
+            
             const idRequisicao = pergunta.requisicaoId;
 
             consultarPergunta(idRequisicao);
-
-            //toggleElement('perguntasElemento');
 
             togglePerguntasElemento();
 
@@ -160,15 +168,18 @@ function criarCards(perguntas) {
 
 async function pesquisarQuestoes() {
     try {
-        const inputElement = document.getElementById('pesquisarQuestoes');
+        const inputElement = document.getElementById('pesquisaQuestoes');
         const searchTerm = inputElement.value;
 
-        // if (searchTerm === '') {
-        
-        //     consultarPerguntas();
+        //limpar o campo de pesquisa
 
-        //    return;
-        //  }
+
+         if (searchTerm === '') {
+        
+          consultarPerguntas();
+
+           return;
+         }
    
         const response = await fetch(`http://localhost:5084/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
             headers: {
@@ -183,9 +194,28 @@ async function pesquisarQuestoes() {
         const questoes = await response.json();
 
 
-        criarListaPerguntas(questoes);
+    console.log(questoes);
+        console.log(searchTerm);
+
+        criarCards(questoes);
+    
+
 
     } catch (error) {
         console.error('Erro ao pesquisar Questoes:', error.message);
     }
+}
+
+
+let debounceTimer;
+
+function pesquisarComDebounce() {
+    // Limpar o temporizador anterior, se existir
+    clearTimeout(debounceTimer);
+
+    // Configurar um novo temporizador
+    debounceTimer = setTimeout(function () {
+        // Função a ser chamada após um atraso
+        pesquisarQuestoes();
+    }, 500); // Ajuste o valor do atraso conforme necessário
 }

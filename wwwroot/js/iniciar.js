@@ -1,3 +1,4 @@
 carregarTagsPaginacao();
 consultarPerguntas();
 obterListas();
+

@@ -63,6 +63,10 @@
 
         <label class="titulo" for="pesquisaTags">Pesquisar Tags:</label>
         <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
+
+        <label class="titulo" for="pesquisaQuestoes">Pesquisar Questoes:</label>
+        
+        <input type="text" id="pesquisaQuestoes" oninput="pesquisarComDebounce()">
         
         <button class="home-botao botao btn btn-primary"
             onclick="resetarQuantidadeTAGs(), consultarPerguntas()">Limpar</button>

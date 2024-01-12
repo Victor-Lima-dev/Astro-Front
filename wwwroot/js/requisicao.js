@@ -69,10 +69,18 @@ function gerarElementosRequisicao(requisicao) {
             homeStatus.style.backgroundColor = "#c8e6c9";
             break;
         case 11:
-            // Se o status for 11, chamar a função para consultar a pergunta
-            toggleElement('home-status');
+           
+
+            //toggleElement('home-status');
+
+            toggleHomeStatus();
+
+            togglePerguntasElemento();
+            
             resetarParagrafoStatus();
+
             consultarPergunta(requisicao.id);
+
             substituirBotaoMostrarPerguntas();
 
             break;
