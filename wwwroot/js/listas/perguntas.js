@@ -100,3 +100,57 @@ function handleCheckboxChange(checkbox) {
     // Exibe os IDs e textos das perguntas selecionadas no console (pode ser removido após testes)
     console.log('Perguntas Selecionadas:', perguntasSelecionadas);
 }
+
+
+
+function pesquisarComDebounceListas() {
+    // Limpar o temporizador anterior, se existir
+    clearTimeout(debounceTimer);
+
+    // Configurar um novo temporizador
+    debounceTimer = setTimeout(function () {
+        // Função a ser chamada após um atraso
+        pesquisarQuestoesListas();
+    }, 500); // Ajuste o valor do atraso conforme necessário
+}
+
+
+async function pesquisarQuestoesListas() {
+    try {
+        const inputElement = document.getElementById('pesquisaQuestoes');
+        const searchTerm = inputElement.value;
+
+        //limpar o campo de pesquisa
+
+
+         if (searchTerm === '') {
+        
+            consultarPerguntasComCallback(criarListaPerguntas);
+
+           return;
+         }
+   
+        const response = await fetch(`http://24.199.100.244:8002/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+
+        const questoes = await response.json();
+
+
+    console.log(questoes);
+    console.log(searchTerm);
+
+    criarListaPerguntas(questoes);
+    
+
+
+    } catch (error) {
+        console.error('Erro ao pesquisar Questoes:', error.message);
+    }
+}

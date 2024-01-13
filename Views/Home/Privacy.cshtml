@@ -13,25 +13,20 @@
 
         <div class="home-inputBox">
             <button type="button" class="home-botao botao"
-                onclick="toggleElement('perguntasElemento'), consultarPerguntasComCallback(criarListaPerguntas) ,adicionarAnimacaoERemover('cardListas'), toggleElementEntrar('entrarElementos')">Criar
+                onclick="toggleListaElemento(), consultarPerguntasComCallback(criarListaPerguntas) ,adicionarAnimacaoERemover('cardListas'), toggleElementEntrar('entrarElementos')">Criar
                 Lista</button>
         </div>
 
     </div>
-
-
-
-
 </div>
 
 
-<div class="perguntas perguntasElemento d-none">
-
-
+<div class="perguntas perguntasElemento listaElemento d-none">
+    
     <div id="pesquisa" class="animate__animated animate__fadeIn tagsBox">
 
         <label class="titulo" for="pesquisaQuestoes">Pesquisar Questoes:</label>
-        <input type="text" id="pesquisarQuestoes" oninput="pesquisarQuestoes()">
+        <input type="text" id="pesquisaQuestoes" oninput="pesquisarComDebounceListas()">
 
 
         <label class="titulo" for="pesquisaTags">Pesquisar Tags:</label>
@@ -41,7 +36,7 @@
         <button class="home-botao botao btn btn-primary" onclick="aumentarQuantidadeTAGs()">Mais</button>
     </div>
 
-    <ul id="listaDeTags" class="d-none perguntasElemento "></ul>
+    <ul id="listaDeTags" class="d-none perguntasElemento listaElemento "></ul>
  
 </div>
 
@@ -58,7 +53,7 @@
 
     </div>
 
-    <form id="formPerguntaSelecionadas" class="perguntasElemento d-none">
+    <form id="formPerguntaSelecionadas" class="perguntasElemento listaElemento d-none">
         <h1>Lista</h1>
         <label for="inputNome">Nome:</label>
         <input type="text" id="inputNome" name="nome" placeholder="Digite o nome">

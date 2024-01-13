@@ -181,7 +181,7 @@ async function pesquisarQuestoes() {
            return;
          }
    
-        const response = await fetch(`http://localhost:5084/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -207,7 +207,7 @@ async function pesquisarQuestoes() {
 }
 
 
-let debounceTimer;
+
 
 function pesquisarComDebounce() {
     // Limpar o temporizador anterior, se existir

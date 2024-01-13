@@ -152,6 +152,7 @@ const visibilidadeEstado = {
     perguntasElemento: true, // true significa visível, false significa invisível
     botaoVoltar: false, // true significa visível, false significa invisível
     homeStatus: true, // true significa visível, false significa invisível
+    listaElemento: false // true significa visível, false significa invisível
   };
   
   // Função para atualizar a visibilidade com base no objeto de estado
@@ -191,6 +192,14 @@ function toggleBotaoVoltar() {
     visibilidadeEstado.homeStatus = !visibilidadeEstado.homeStatus;
 
     console.log( " HomeStatus" +" "+ visibilidadeEstado.homeStatus);
+
+    atualizarVisibilidade();
+  }
+
+  function toggleListaElemento() {
+    visibilidadeEstado.listaElemento = !visibilidadeEstado.listaElemento;
+
+    console.log( " ListaElemento" +" "+ visibilidadeEstado.listaElemento);
 
     atualizarVisibilidade();
   }

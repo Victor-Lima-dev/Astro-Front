@@ -7,3 +7,5 @@ let intervalId; // Variável para armazenar o ID do intervalo
 let quantidade = 3;
 
 let perguntasConsultadas = false;
+
+let debounceTimer;
