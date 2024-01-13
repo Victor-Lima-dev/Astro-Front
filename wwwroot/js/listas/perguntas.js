@@ -130,7 +130,7 @@ async function pesquisarQuestoesListas() {
            return;
          }
    
-        const response = await fetch(`http://24.199.100.244:8002/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
