@@ -18,6 +18,11 @@ function processarResposta(resposta, alternativaId) {
 
             interacoesDomAposResposta(data, alternativaId);
             
+             var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
+
+             //salvar a resposta no array de respostas
+                salvarResposta(resposta.perguntaId, data);
+
         })
         .catch(error => {
             alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
@@ -45,6 +50,8 @@ function interacoesDomAposResposta(data, alternativaId) {
         // Desabilitar outros botões
         desabilitarBotoesAlternativa();
 
+
+
         // Adicionar mensagem de resposta correta
         var mensagemResposta = document.getElementById('mensagemResposta');
         mensagemResposta.textContent = 'Resposta correta!';
@@ -58,6 +65,7 @@ function interacoesDomAposResposta(data, alternativaId) {
         var mensagemResposta = document.getElementById('mensagemResposta');
         mensagemResposta.textContent = 'Resposta incorreta!';
         mensagemResposta.style.color = 'red';
+
     }
 }
 
