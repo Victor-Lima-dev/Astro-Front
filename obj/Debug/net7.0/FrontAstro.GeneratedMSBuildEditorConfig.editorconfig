@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Vitor/Desktop/code/Astro/FrontAstro/Views/Home/EditarLista.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJMaXN0YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Vitor/Desktop/code/Astro/FrontAstro/Views/Home/Index copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleCBjb3B5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,8 +32,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Vitor/Desktop/code/Astro/FrontAstro/Views/Home/Privacy copy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5IGNvcHkuY3NodG1s
+[C:/Users/Vitor/Desktop/code/Astro/FrontAstro/Views/Home/Listas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaXN0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Vitor/Desktop/code/Astro/FrontAstro/Views/Home/Privacy.cshtml]

@@ -165,6 +165,7 @@ li
   cursor: pointer;
   width: 25rem;
   border-radius: 20px;
+  
 
   background-color: aliceblue;
 
@@ -284,11 +285,14 @@ li
   justify-content: center;
   flex-wrap: wrap;
   gap: .5rem;
+
+
+  
 }
 
 #responderLista
 {
-  background: #e6f0ff;
+  
   width: 20rem;
   padding: .5rem;
   border-radius: 20px;
@@ -306,14 +310,12 @@ li
   display: flex;
 
 
+  
+ 
+
 }
 
-.formPerguntaSelecionadas > div
-{
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
+
 h3
 {
   text-align: center;
@@ -328,7 +330,7 @@ h3
   gap: .5rem;
   justify-content: center;
   align-items: center;
-  width: 100%;
+
 }
 
 #listaDePerguntas {
@@ -363,5 +365,60 @@ h3
   display: flex;
   flex-direction: column;
   gap: .5rem;
+  /* gostaria que a altura fosse limitada e se o conteudo passar seja adicionada uma barra de rolar 
+  */
 
+  max-height: 30rem;
+  overflow-y: auto;
+}
+
+.container-pesquisarListas
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  background-color: aliceblue;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+
+.selecionarPerguntas
+{
+  display: flex;
+}
+
+#listaPerguntasSelecionadas
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  max-height: 30rem;
+  overflow-y: auto;
+  width: 100%;
+}
+
+#formPerguntaSelecionadas
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  width: 100%;
+}
+
+
+.formPerguntasSelecionadas
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  width: 100%;
+  padding: .5rem;
+  margin-inline: .1rem;
+
+  border-radius: 20px;
+  background-color: #e6f0ff;
 }

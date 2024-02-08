@@ -30,6 +30,19 @@ public class HomeController : Controller
         return View(listaPerguntas);
     }
 
+    
+    public IActionResult EditarLista()
+    {
+    
+        return View();
+    }
+    
+    public IActionResult Listas()
+    {
+    
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

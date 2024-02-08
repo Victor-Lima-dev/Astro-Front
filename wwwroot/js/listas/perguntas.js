@@ -6,11 +6,12 @@ function criarListaPerguntas(perguntas) {
     const listaPerguntas = document.getElementById('listaDePerguntas');
     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
 
-    console.log("executou a função criarListaPerguntas()");
+
 
     // Limpa o conteúdo atual das listas
     listaPerguntas.innerHTML = '';
-    listaPerguntasSelecionadas.innerHTML = '';
+
+    //listaPerguntasSelecionadas.innerHTML = '';
 
     perguntas.forEach((pergunta) => {
         const card = document.createElement('div');
@@ -57,21 +58,7 @@ function criarListaPerguntas(perguntas) {
 }
 
 
-// Função para atualizar as listas na página
-function atualizarListas() {
-    // Limpar a lista de perguntas selecionadas no HTML
-    const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
-    listaPerguntasSelecionadas.innerHTML = '';
 
-    // Desmarcar todos os checkboxes
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-
-    // Limpar o array de perguntas selecionadas
-    perguntasSelecionadas = [];
-}
 
 // Função para lidar com a alteração do estado do checkbox
 function handleCheckboxChange(checkbox) {
@@ -117,7 +104,7 @@ function pesquisarComDebounceListas() {
 
 async function pesquisarQuestoesListas() {
     try {
-        const inputElement = document.getElementById('pesquisaQuestoes');
+        const inputElement = document.getElementById('pesquisaQuestoesLista');
         const searchTerm = inputElement.value;
 
         //limpar o campo de pesquisa
