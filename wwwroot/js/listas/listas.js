@@ -102,7 +102,7 @@ function criarCardsDeListas(listas) {
 
               capturarPerguntasDaLista(lista.perguntas);
               
-              mostrarPerguntasDaLista(lista.perguntas);
+              mostrarPerguntasDaLista(lista.perguntas, lista.id);
 
               
               
@@ -361,11 +361,11 @@ async function capturarPerguntasDaLista(lista)
 
 //função para mostrar as perguntas da lista selecionada
 
-function mostrarPerguntasDaLista(perguntas)
+function mostrarPerguntasDaLista(perguntas, listaId)
 {
     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
 
-    editarListaHTML(perguntas);
+    editarListaHTML(perguntas, listaId);
 
     //limpar o array de perguntas selecionadas
 

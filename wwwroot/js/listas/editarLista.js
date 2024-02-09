@@ -1,8 +1,29 @@
 let perguntasSelecionadasEditar = [];
 
-function editarListaHTML(perguntas) {
+function editarListaHTML(perguntas, listaId) {
+
+    //limpar os elementos que estao em cardListas
+
+    const listas = document.getElementById('cardListas');
+    listas.innerHTML = '';
+
+    //criar um botao salvar
 
     
+    const btnSalvar = document.createElement('button');
+    btnSalvar.classList.add('btn', 'btn-success', 'mr-2');
+    btnSalvar.textContent = 'Salvar';
+    btnSalvar.addEventListener('click', (event) => {
+        event.stopPropagation(); // Impedir a propagação do evento de clique para o card
+        editarListaPerguntas(listaId);
+    });
+
+
+    
+
+
+
+
     const elementoEditar = document.getElementsByClassName('editarLista')[0];
     //limpar o elemento
 
@@ -70,6 +91,8 @@ function editarListaHTML(perguntas) {
     divPesquisa.appendChild(inputTags);
     divPesquisa.appendChild(botaoLimpar);
     divPesquisa.appendChild(botaoMais);
+
+    divPerguntas.appendChild(btnSalvar);
 
     const listaTags = document.createElement('ul');
     listaTags.id = 'listaDeTagsLista';
