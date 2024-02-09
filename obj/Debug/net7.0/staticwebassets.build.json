@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "x8XDXemZx5b7ia7ebRRZxwm0lNyAzRYREP36y5Xq+S0=",
+  "Hash": "gjQspoHHNE35pYK5ESjo7WPqpW5EO/BtbIsekFVFhmY=",
   "Source": "FrontAstro",
   "BasePath": "_content/FrontAstro",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\iniciar.js"
+    },
+    {
+      "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\editarLista.js",
+      "SourceId": "FrontAstro",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\",
+      "BasePath": "_content/FrontAstro",
+      "RelativePath": "js/listas/editarLista.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\listas\\editarLista.js"
     },
     {
       "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\enviarLista.js",

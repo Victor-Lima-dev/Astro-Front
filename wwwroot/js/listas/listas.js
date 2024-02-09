@@ -101,10 +101,13 @@ function criarCardsDeListas(listas) {
 
 
               capturarPerguntasDaLista(lista.perguntas);
-
+              
               mostrarPerguntasDaLista(lista.perguntas);
 
+              
+              
               consultarPerguntasComCallback(mostrarPerguntasDisponiveis);
+              perguntasPresentesNaLista(lista.perguntas);
           });
 
           //adicionar o botao salvar
@@ -353,9 +356,6 @@ async function capturarPerguntasDaLista(lista)
             perguntasSelecionadas.push(pergunta);
             
         });
-
-        
-
 }
 
 
@@ -365,7 +365,11 @@ function mostrarPerguntasDaLista(perguntas)
 {
     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
 
-    
+    editarListaHTML(perguntas);
+
+    //limpar o array de perguntas selecionadas
+
+    perguntasSelecionadasEditar = [];
 
     // Limpa o conteúdo atual das listas
     listaPerguntasSelecionadas.innerHTML = '';
@@ -445,30 +449,45 @@ function mostrarPerguntasDisponiveis(perguntas)
 {
     const listaPerguntasSelecionadas = document.getElementById('listaDePerguntasEditar');
 
+    
+    consultarPerguntasComCallback(criarListaPerguntasParaEditar);
+
+    
+    
+
     // Limpa o conteúdo atual das listas
     listaPerguntasSelecionadas.innerHTML = '';
 
-    perguntas.forEach((pergunta) => {
-
-        const itemSelecionado = document.createElement('li');
-        itemSelecionado.textContent = `${pergunta.conteudo} (ID: ${pergunta.id})`;
-        listaPerguntasSelecionadas.appendChild(itemSelecionado);
-
-        //adicionar um botao remover
-
-        const btnRemover = document.createElement('button');
-        btnRemover.classList.add('btn', 'btn-danger', 'mr-2');
-        btnRemover.textContent = 'Adicionar';
-        btnRemover.addEventListener('click', (event) => {
-            event.stopPropagation(); // Impedir a propagação do evento de clique para o card
-            adicionarPerguntaDaLista(pergunta);
-            console.log(pergunta);
-        });
-
-        itemSelecionado.appendChild(btnRemover);
-    });
 
 }
+// function mostrarPerguntasDisponiveis(perguntas)
+// {
+//     const listaPerguntasSelecionadas = document.getElementById('listaDePerguntasEditar');
+
+//     // Limpa o conteúdo atual das listas
+//     listaPerguntasSelecionadas.innerHTML = '';
+
+//     perguntas.forEach((pergunta) => {
+
+//         const itemSelecionado = document.createElement('li');
+//         itemSelecionado.textContent = `${pergunta.conteudo} (ID: ${pergunta.id})`;
+//         listaPerguntasSelecionadas.appendChild(itemSelecionado);
+
+//         //adicionar um botao remover
+
+//         const btnRemover = document.createElement('button');
+//         btnRemover.classList.add('btn', 'btn-danger', 'mr-2');
+//         btnRemover.textContent = 'Adicionar';
+//         btnRemover.addEventListener('click', (event) => {
+//             event.stopPropagation(); // Impedir a propagação do evento de clique para o card
+//             adicionarPerguntaDaLista(pergunta);
+//             console.log(pergunta);
+//         });
+
+//         itemSelecionado.appendChild(btnRemover);
+//     });
+
+// }
 
 //função para adicionar a pergunta selecionada a lista de perguntas selecionadas
 

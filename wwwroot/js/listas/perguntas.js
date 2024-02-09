@@ -1,61 +1,61 @@
 // Array para armazenar IDs das perguntas selecionadas
 let perguntasSelecionadas = [];
 
-function criarListaPerguntas(perguntas) {
+// function criarListaPerguntas(perguntas) {
 
-    const listaPerguntas = document.getElementById('listaDePerguntas');
-    const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
+//     const listaPerguntas = document.getElementById('listaDePerguntas');
+//     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
 
 
 
-    // Limpa o conteúdo atual das listas
-    listaPerguntas.innerHTML = '';
+//     // Limpa o conteúdo atual das listas
+//     listaPerguntas.innerHTML = '';
 
-    //listaPerguntasSelecionadas.innerHTML = '';
+//     //listaPerguntasSelecionadas.innerHTML = '';
 
-    perguntas.forEach((pergunta) => {
-        const card = document.createElement('div');
-        card.classList.add('card', 'mb-3', 'pergunta-card', 'animate__animated', 'animate__fadeIn');
+//     perguntas.forEach((pergunta) => {
+//         const card = document.createElement('div');
+//         card.classList.add('card', 'mb-3', 'pergunta-card', 'animate__animated', 'animate__fadeIn');
 
   
-        const cardBody = document.createElement('div');
-        cardBody.classList.add('card-body');
+//         const cardBody = document.createElement('div');
+//         cardBody.classList.add('card-body');
 
-        const numeroPergunta = document.createElement('h5');
-        numeroPergunta.classList.add('card-title');
-        numeroPergunta.textContent = `Pergunta ${pergunta.conteudo}`;
+//         const numeroPergunta = document.createElement('h5');
+//         numeroPergunta.classList.add('card-title');
+//         numeroPergunta.textContent = `Pergunta ${pergunta.conteudo}`;
 
-        const conteudoPergunta = document.createElement('p');
-        conteudoPergunta.classList.add('card-text');
-        conteudoPergunta.textContent = pergunta.conteudo;
+//         const conteudoPergunta = document.createElement('p');
+//         conteudoPergunta.classList.add('card-text');
+//         conteudoPergunta.textContent = pergunta.conteudo;
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = pergunta.id;
-        checkbox.addEventListener('change', () => handleCheckboxChange(checkbox));
+//         const checkbox = document.createElement('input');
+//         checkbox.type = 'checkbox';
+//         checkbox.value = pergunta.id;
+//         checkbox.addEventListener('change', () => handleCheckboxChange(checkbox));
 
-        const label = document.createElement('label');
-        label.textContent = 'Selecionar';
+//         const label = document.createElement('label');
+//         label.textContent = 'Selecionar';
 
-        // Adiciona os elementos ao card
-        cardBody.appendChild(numeroPergunta);
-        cardBody.appendChild(conteudoPergunta);
-        cardBody.appendChild(checkbox);
-        cardBody.appendChild(label);
+//         // Adiciona os elementos ao card
+//         cardBody.appendChild(numeroPergunta);
+//         cardBody.appendChild(conteudoPergunta);
+//         cardBody.appendChild(checkbox);
+//         cardBody.appendChild(label);
 
-        card.appendChild(cardBody);
+//         card.appendChild(cardBody);
 
-        // Adiciona o card à lista de perguntas
-        listaPerguntas.appendChild(card);
-    });
+//         // Adiciona o card à lista de perguntas
+//         listaPerguntas.appendChild(card);
+//     });
 
-    // Exibe as perguntas selecionadas na lista separada
-    perguntasSelecionadas.forEach((perguntaSelecionada) => {
-        const itemSelecionado = document.createElement('li');
-        itemSelecionado.textContent = `${perguntaSelecionada.texto} (ID: ${perguntaSelecionada.id})`;
-        listaPerguntasSelecionadas.appendChild(itemSelecionado);
-    });
-}
+//     // Exibe as perguntas selecionadas na lista separada
+//     perguntasSelecionadas.forEach((perguntaSelecionada) => {
+//         const itemSelecionado = document.createElement('li');
+//         itemSelecionado.textContent = `${perguntaSelecionada.texto} (ID: ${perguntaSelecionada.id})`;
+//         listaPerguntasSelecionadas.appendChild(itemSelecionado);
+//     });
+// }
 
 
 

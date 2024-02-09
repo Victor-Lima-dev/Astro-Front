@@ -422,3 +422,14 @@ h3
   border-radius: 20px;
   background-color: #e6f0ff;
 }
+
+.editarLista
+{
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+}

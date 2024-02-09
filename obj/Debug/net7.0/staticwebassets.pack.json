@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\js\\iniciar.js"
     },
     {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\editarLista.js",
+      "PackagePath": "staticwebassets\\js\\listas\\editarLista.js"
+    },
+    {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\listas\\enviarLista.js",
       "PackagePath": "staticwebassets\\js\\listas\\enviarLista.js"
     },
