@@ -401,7 +401,7 @@ function removerPerguntaDaLista(id)
 // Função para enviar a lista de perguntas selecionadas para o endpoint
 async function editarListaPerguntas(id) {
     try {
-        const listaPerguntasSelecionadas = perguntasSelecionadas.map(pergunta => pergunta.id);
+        const listaPerguntasSelecionadas = perguntasSelecionadasEditar.map(pergunta => pergunta.id);
 
         //criar um form data
 

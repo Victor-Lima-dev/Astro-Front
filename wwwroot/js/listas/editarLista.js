@@ -206,10 +206,9 @@ function handleCheckboxChangeLogicEditar(checkbox) {
     if (checkbox.checked) {
         // Se marcado, adiciona o ID e o texto à lista de perguntas selecionadas
         perguntasSelecionadasEditar.push({ id: idPergunta, texto: textoPergunta });
-        console.log(perguntasSelecionadasEditar);
     } else {
         // Se desmarcado, remove o item da lista de perguntas selecionadas
         perguntasSelecionadasEditar = perguntasSelecionadasEditar.filter(item => item.id !== idPergunta);
-        console.log(perguntasSelecionadasEditar);
+        
     }
 }
