@@ -425,11 +425,24 @@ h3
 
 .editarLista
 {
-  display: flex;
-  gap: .5rem;
-  justify-content: center;
-  align-items: center;
+  
 
-  flex-direction: column;
+}
 
+
+#divPerguntasUl
+{
+  display: flex !important;
+  flex-direction: row;
+  align-items: start;
+}
+
+#divPerguntasUl > ul
+{
+  width: 50%;
+}
+
+#divPerguntasUl > div
+{
+  width: 50%;
 }

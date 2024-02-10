@@ -128,14 +128,18 @@ async function obterEAtualizarTagsRelacionadasLista(tagId) {
 
 
 
-async function pesquisarTagsCallBack(callback) {
+async function pesquisarTagsCallBack(callback, callbackSeEstiverVazio) {
     try {
+
         const inputElement = document.getElementById('pesquisaTags');
         const searchTerm = inputElement.value;
 
         if (searchTerm === '') {
             // Se estiver vazio, execute carregarTags()
-            carregarTagsPaginacao();
+
+          
+            callbackSeEstiverVazio();
+
             return;
         }
 

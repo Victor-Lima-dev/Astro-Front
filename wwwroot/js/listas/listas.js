@@ -43,6 +43,7 @@ function criarCardsDeListas(listas) {
          // Adicionar um event listener para quando o card for clicado
          card.addEventListener('click', () => {
             togglePerguntasElemento();
+            apagarElementosParaResponder();
             // Chamar a função adicionarAnimacaoERemover e, ao finalizar, chamar a responderLista
             adicionarAnimacaoERemoverCallBack('cardListas', () => responderLista(lista.perguntas));
         });
@@ -105,21 +106,10 @@ function criarCardsDeListas(listas) {
               mostrarPerguntasDaLista(lista.perguntas, lista.id);
 
               
-              
+              ApagarElementosParaEditar();
               consultarPerguntasComCallback(mostrarPerguntasDisponiveis);
               perguntasPresentesNaLista(lista.perguntas);
           });
-
-          //adicionar o botao salvar
-
-            const btnSalvar = document.createElement('button');
-            btnSalvar.classList.add('btn', 'btn-success', 'mr-2');
-            btnSalvar.textContent = 'Salvar';
-            btnSalvar.addEventListener('click', (event) => {
-                event.stopPropagation(); // Impedir a propagação do evento de clique para o card
-                editarListaPerguntas(lista.id);
-            });
-
 
         cardBody.appendChild(numeroLista);
         cardBody.appendChild(nomeLista);
@@ -130,7 +120,7 @@ function criarCardsDeListas(listas) {
 
         cardBody.appendChild(btnDeletar);
         cardBody.appendChild(btnEditar);
-        cardBody.appendChild(btnSalvar);
+
 
         card.appendChild(cardBody);
         cardListas.appendChild(card);
@@ -233,6 +223,7 @@ function handleCheckboxChangeLogic(checkbox) {
 
 // Função para criar a representação visual da lista de perguntas selecionadas
 function updateVisualRepresentation() {
+    
     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
     listaPerguntasSelecionadas.innerHTML = '';
 
@@ -410,14 +401,8 @@ async function editarListaPerguntas(id) {
         //adicionar no form data o id da lista
         formData.append('id', id);
 
-
-
-        console.log('Lista de perguntas selecionadas:', listaPerguntasSelecionadas);
-
-        // Adicione a lista de perguntas selecionadas ao FormData como um campo JSON
+    // Adicione a lista de perguntas selecionadas ao FormData como um campo JSON
         formData.append('lista', JSON.stringify(listaPerguntasSelecionadas));
-
-       
 
         const response = await fetch('http://localhost:5084/api/Listas/AtualizarPerguntasDaLista', {
             method: 'PUT',
@@ -431,8 +416,8 @@ async function editarListaPerguntas(id) {
             throw new Error(`Erro na requisição: ${response.statusText}`);
         }
 
-        const resultado = await response.json();
-        console.log('Resposta da API:', resultado);
+        location.reload();
+
         perguntasSelecionadas = [];
 
     } catch (error) {
