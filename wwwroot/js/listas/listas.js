@@ -269,7 +269,7 @@ async function pesquisarListas() {
            return;
          }
    
-        const response = await fetch(`http://localhost:5084/api/Listas/ProcurarLista?nome=${searchTerm}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Listas/ProcurarLista?nome=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -308,7 +308,7 @@ function pesquisarComAtrasoListas() {
 
 async function deletarLista(id) {
     try {
-        const response = await fetch(`http://localhost:5084/api/Listas/DeletarLista?id=${id}`, {
+        const response = await fetch(`http://24.199.100.244:8002/api/Listas/DeletarLista?id=${id}`, {
             method: 'DELETE', // Alterado para DELETE
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -404,7 +404,7 @@ async function editarListaPerguntas(id) {
     // Adicione a lista de perguntas selecionadas ao FormData como um campo JSON
         formData.append('lista', JSON.stringify(listaPerguntasSelecionadas));
 
-        const response = await fetch('http://localhost:5084/api/Listas/AtualizarPerguntasDaLista', {
+        const response = await fetch('http://24.199.100.244:8002/api/Listas/AtualizarPerguntasDaLista', {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`, // Adicione o token JWT, se necessário
