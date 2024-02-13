@@ -1,7 +1,7 @@
 // Função para consultar a requisição
 function consultarRequisicao(idRequisicao) {
     try {
-        fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
+        fetch(urlAPI + `Requisicoes/ConsultarRequisicao?id=${idRequisicao}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -107,7 +107,7 @@ function enviarFormulario() {
         var formData = new FormData();
         formData.append('textoEntrada', textoEntrada);
 
-        fetch("http://24.199.100.244:8002/api/Requisicoes/IniciarRequisicao", {
+        fetch(urlAPI + "Requisicoes/IniciarRequisicao", {
             method: "POST",
             body: formData,
             headers: {

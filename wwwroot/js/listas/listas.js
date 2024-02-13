@@ -2,7 +2,7 @@
 async function obterListas() {
     try {
     
-        const response = await fetch('http://24.199.100.244:8002/api/Listas/RetornarTodasListas', {
+        const response = await fetch(urlAPI + 'Listas/RetornarTodasListas', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -269,7 +269,7 @@ async function pesquisarListas() {
            return;
          }
    
-        const response = await fetch(`http://24.199.100.244:8002/api/Listas/ProcurarLista?nome=${searchTerm}`, {
+        const response = await fetch(urlAPI + `Listas/ProcurarLista?nome=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -308,7 +308,7 @@ function pesquisarComAtrasoListas() {
 
 async function deletarLista(id) {
     try {
-        const response = await fetch(`http://24.199.100.244:8002/api/Listas/DeletarLista?id=${id}`, {
+        const response = await fetch(urlAPI + `Listas/DeletarLista?id=${id}`, {
             method: 'DELETE', // Alterado para DELETE
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -404,7 +404,7 @@ async function editarListaPerguntas(id) {
     // Adicione a lista de perguntas selecionadas ao FormData como um campo JSON
         formData.append('lista', JSON.stringify(listaPerguntasSelecionadas));
 
-        const response = await fetch('http://24.199.100.244:8002/api/Listas/AtualizarPerguntasDaLista', {
+        const response = await fetch(urlAPI + 'Listas/AtualizarPerguntasDaLista', {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`, // Adicione o token JWT, se necessário
@@ -512,7 +512,7 @@ async function pesquisarQuestoesListas() {
            return;
          }
    
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+        const response = await fetch(urlAPI + `Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

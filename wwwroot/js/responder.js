@@ -5,7 +5,7 @@ function processarResposta(resposta, alternativaId) {
         formData.append('IdPergunta', resposta.perguntaId);
         formData.append('IdResposta', resposta.id);
 
-        fetch('http://24.199.100.244:8002/api/Requisicoes/ResponderPergunta', {
+        fetch( urlAPI +  'Requisicoes/ResponderPergunta', {
             method: 'POST',
             body: formData,
             headers: {

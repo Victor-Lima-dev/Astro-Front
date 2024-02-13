@@ -1,7 +1,7 @@
 
 async function consultarPerguntasComCallback(callback) {
     try {
-        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/ConsultarPerguntas', {
+        const response = await fetch(urlAPI + 'Requisicoes/ConsultarPerguntas', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

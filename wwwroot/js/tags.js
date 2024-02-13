@@ -10,7 +10,7 @@ async function pesquisarTags() {
         }
 
 
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarTAG?texto=${searchTerm}`, {
+        const response = await fetch(urlAPI + `Requisicoes/ProcurarTAG?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -37,7 +37,7 @@ async function pesquisarTags() {
 async function carregarTags() {
     try {
     
-        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/RetornarTAGs', {
+        const response = await fetch(urlAPI + 'Requisicoes/RetornarTAGs', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -61,7 +61,7 @@ async function carregarTags() {
 async function carregarTagsPaginacao() {
     try {
         
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
+        const response = await fetch(urlAPI + `Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -134,7 +134,7 @@ async function enviarTagParaPerguntas(tag) {
         formData.append('tagId', tag);
 
     
-        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
+        const response = await fetch(urlAPI + 'Requisicoes/PerguntasPorTags', {
             method: 'POST',
             body: formData,
             headers: {
@@ -162,7 +162,7 @@ async function obterEAtualizarTagsRelacionadas(tagId) {
 
     try {
 
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/TagsRelacionadas?tagId=${tagId}`, {
+        const response = await fetch(urlAPI + `Requisicoes/TagsRelacionadas?tagId=${tagId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

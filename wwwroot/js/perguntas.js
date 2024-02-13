@@ -2,7 +2,7 @@
 
 async function consultarPerguntas() {
     try {
-        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/ConsultarPerguntas', {
+        const response = await fetch(urlAPI + 'Requisicoes/ConsultarPerguntas', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -26,7 +26,7 @@ async function consultarPerguntas() {
 
 // Função para fazer a consulta de pergunta
 function consultarPergunta(requisicaoId) {
-    fetch(`http://24.199.100.244:8002/api/Requisicoes/ConsultarPergunta?id=${requisicaoId}`, {
+    fetch(urlAPI + `Requisicoes/ConsultarPergunta?id=${requisicaoId}`, {
         method: "GET",
         headers: {
             'Authorization': 'Bearer ' + token,
@@ -181,7 +181,7 @@ async function pesquisarQuestoes() {
            return;
          }
    
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+        const response = await fetch(urlAPI + `Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

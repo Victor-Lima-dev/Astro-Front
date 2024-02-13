@@ -191,7 +191,7 @@ async function pesquisarQuestoesListasEditar() {
            return;
          }
    
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
+        const response = await fetch(urlAPI + `Requisicoes/ProcurarQuestao?texto=${searchTerm}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -410,7 +410,7 @@ function criarListaDeTagsListaEditar(tags) {
 async function carregarTagsPaginacaoListaEditar() {
     try {
         
-        const response = await fetch(`http://24.199.100.244:8002/api/Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
+        const response = await fetch(urlAPI + `Requisicoes/RetornarTAGsPaginacao?quantidade=${quantidade}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -451,7 +451,7 @@ async function enviarTagParaPerguntasListaCallBack(tag, callback) {
 
         formData.append('tagId', tag);
 
-        const response = await fetch('http://24.199.100.244:8002/api/Requisicoes/PerguntasPorTags', {
+        const response = await fetch(urlAPI + 'Requisicoes/PerguntasPorTags', {
             method: 'POST',
             body: formData,
             headers: {
