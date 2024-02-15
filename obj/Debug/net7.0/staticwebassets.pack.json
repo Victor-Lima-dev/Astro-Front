@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\js\\animacoes.js"
     },
     {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\crudPerguntas\\deletar.js",
+      "PackagePath": "staticwebassets\\js\\crudPerguntas\\deletar.js"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\crudPerguntas\\editar.js",
+      "PackagePath": "staticwebassets\\js\\crudPerguntas\\editar.js"
+    },
+    {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\iniciar.js",
       "PackagePath": "staticwebassets\\js\\iniciar.js"
     },

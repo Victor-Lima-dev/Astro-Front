@@ -134,6 +134,25 @@ function criarCards(perguntas) {
 
         });
 
+        //adicionar botao deletar
+        const botaoDeletar = document.createElement('button');
+        botaoDeletar.classList.add('btn', 'btn-danger', 'deletar-pergunta');
+        botaoDeletar.textContent = 'Deletar';
+        botaoDeletar.addEventListener('click', function (event) {
+            event.stopPropagation();
+            deletarPergunta(pergunta.id);
+        });
+
+        //adicionar botao editar
+        const botaoEditar = document.createElement('button');
+        botaoEditar.classList.add('btn', 'btn-primary', 'editar-pergunta');
+        botaoEditar.textContent = 'Editar';
+        botaoEditar.addEventListener('click', function (event) {
+            event.stopPropagation();
+            editarPergunta(pergunta);
+        });
+     
+
         const cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
 
@@ -159,6 +178,8 @@ function criarCards(perguntas) {
         cardBody.appendChild(numeroPergunta);
         cardBody.appendChild(conteudoPergunta);
         cardBody.appendChild(tagsPergunta);
+        cardBody.appendChild(botaoDeletar);
+        cardBody.appendChild(botaoEditar);
 
         card.appendChild(cardBody);
         cardContainer.appendChild(card);
