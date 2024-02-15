@@ -1,16 +1,22 @@
-<div id="cardListas">
+<div class="container mt-5">
+  <h2>Editar Pergunta</h2>
+  <form>
+    <!-- Enunciado -->
+    <div class="form-group">
+      <label for="enunciado">Enunciado:</label>
+      <textarea class="form-control" id="enunciado" rows="3">Qual a condição necessária para que dois conjuntos sejam iguais?</textarea>
+    </div>
 
+    <!-- Alternativas -->
+    <div class="form-group">
+      <label for="alternativas">Alternativas:</label>
+      <div id="alternativas">
+        <input type="text" class="form-control mb-2" value="Os conjuntos devem possuir elementos em ordem alfabética.">
+        <input type="text" class="form-control mb-2" value="Os conjuntos devem possuir a mesma quantidade de elementos.">
+        <!-- Outras alternativas aqui -->
+      </div>
+    </div>
 
-</div>
-
-
-<div class="editarLista">
-
-    <div id = "listaPerguntasSelecionadasEditar">
-
-</div>
-
-<div id = "listaDePerguntasEditar"> </div>
-
-
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
 </div>

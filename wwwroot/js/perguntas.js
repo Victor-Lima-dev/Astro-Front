@@ -149,9 +149,11 @@ function criarCards(perguntas) {
         botaoEditar.textContent = 'Editar';
         botaoEditar.addEventListener('click', function (event) {
             event.stopPropagation();
-            editarPergunta(pergunta);
+            destruirElementosIndex();
+            criarEstruturaPergunta(pergunta);
         });
-     
+        
+        console.log(pergunta);
 
         const cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
