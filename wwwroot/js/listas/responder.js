@@ -21,7 +21,7 @@ function responderLista(lista) {
     // Itera sobre as perguntas na lista
     lista.forEach((pergunta, index) => {
         const perguntaItem = document.createElement('div');
-        perguntaItem.classList.add('pergunta-item','btn' ,'btn-primary');
+        perguntaItem.classList.add('pergunta-item','btn', 'btn-secondary');
 
         //colocar o id da pergunta no botão
 
@@ -44,6 +44,15 @@ function responderLista(lista) {
 
     // Adiciona a lista HTML ao local para responder a lista
     responderListaElement.appendChild(listaHTML);
+
+    //setar a variavel quantidadePerguntasLista com a quantidade de perguntas na lista
+
+    quantidadePerguntasLista = lista.length;
+
+
+
+   
+    mostrarContadores(lista);
 }
 
 //array de respostasLista
@@ -57,6 +66,7 @@ function salvarResposta (perguntaId, booleano) {
     };
     respostasLista.push(resposta);
     definirContadoresRespostasLista();
+    atualizarContadores();
 }
 
 function alterarEstiloBotao () {
@@ -78,8 +88,9 @@ function definirContadoresRespostasLista() {
     let contadores = {
         positivas: 0,
         negativas: 0,
-        quantidadeRespostas: respostasLista.length,
-        quantidadePerguntasRespondidas: calcularTotalPerguntasRespondidas()
+        quantidadePerguntas: respostasLista.length,
+        quantidadePerguntasRespondidas: calcularTotalPerguntasRespondidas(),
+        quantidadeRestante:  quantidadePerguntasLista - calcularTotalPerguntasRespondidas() 
     };
 
     respostasLista.forEach((resposta) => {
@@ -90,6 +101,7 @@ function definirContadoresRespostasLista() {
         }
     });
 
+    
     return contadores;
 }
 
@@ -104,7 +116,59 @@ function calcularTotalPerguntasRespondidas() {
             perguntasRespondidas.push(resposta.perguntaId);
         }
     });
-    console.log(perguntasRespondidas);
     return perguntasRespondidas.length;
     
+}
+let quantidadePerguntasLista;
+function mostrarContadores()
+{
+    const caixaResponderLista = document.getElementsByClassName('caixaResponderLista ');
+
+    
+    //criar uma div para mostrar os contadores
+    const divContadores = document.createElement('div');
+    divContadores.classList.add('contadores');
+    divContadores.id = 'contadores';
+
+    //criar um paragrafo para mostrar a quantidade de perguntas respondidas
+    const paragrafoPerguntasRespondidas = document.createElement('p');
+    paragrafoPerguntasRespondidas.textContent = `Perguntas respondidas: ${calcularTotalPerguntasRespondidas()}`;
+    
+    //criar um paragrafo para mostrar a quantidade de respostas positivas
+    const paragrafoRespostasPositivas = document.createElement('p');
+    paragrafoRespostasPositivas.textContent = `Respostas positivas: ${definirContadoresRespostasLista().positivas}`;
+
+    //criar um paragrafo para mostrar a quantidade de respostas negativas
+    const paragrafoRespostasNegativas = document.createElement('p');
+    paragrafoRespostasNegativas.textContent = `Respostas negativas: ${definirContadoresRespostasLista().negativas}`;
+
+    //criar um parafrafo para mostrar a quantidade de perguntas restantes
+    const paragrafoPerguntasRestantes = document.createElement('p');
+    paragrafoPerguntasRestantes.textContent = `Perguntas restantes: ${definirContadoresRespostasLista().quantidadeRestante}`;
+
+    //criar um paragrafo para mostrar a quantidade de perguntas
+    const paragrafoQuantidadePerguntas = document.createElement('p');
+    paragrafoQuantidadePerguntas.textContent = `Quantidade de perguntas: ${quantidadePerguntasLista}`;
+
+
+
+    //adicionar os paragrafos na div
+    divContadores.appendChild(paragrafoQuantidadePerguntas);
+    divContadores.appendChild(paragrafoPerguntasRespondidas);
+    divContadores.appendChild(paragrafoRespostasPositivas);
+    divContadores.appendChild(paragrafoRespostasNegativas);
+    divContadores.appendChild(paragrafoPerguntasRestantes);
+
+    //adicionar a div na caixaResponderLista
+    caixaResponderLista[0].appendChild(divContadores);
+}
+
+function atualizarContadores() {
+ 
+    //verifica se existe uma div com o id contadores
+    if (document.getElementById('contadores')) {
+        document.getElementById('contadores').remove();
+    }
+
+    mostrarContadores();
 }
