@@ -1,7 +1,7 @@
 function editarPergunta(pergunta) {
     console.log(pergunta);
 
-    fetch(urlAPITeste + 'Perguntas/Editar', {
+    fetch(urlAPI + 'Perguntas/Editar', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
