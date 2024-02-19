@@ -46,8 +46,6 @@ function interacoesDomAposResposta(data, alternativaId, motivoId) {
         //mostrar a explicação
         
 
-
-
         // Adicionar mensagem de resposta correta
         var mensagemResposta = document.getElementById('mensagemResposta');
         mensagemResposta.textContent = 'Resposta correta!';

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0f0u2Pl6U3aUvBOat17hdgo3PnH8QgUMQg5hsOfz6oo=",
+  "Hash": "O2ASVysHaE0vsnlpl/hgJTyxQXZR/ZqjM/v4P27OMVU=",
   "Source": "FrontAstro",
   "BasePath": "_content/FrontAstro",
   "Mode": "Default",
@@ -1103,6 +1103,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\astronauta.svg",
+      "SourceId": "FrontAstro",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\",
+      "BasePath": "_content/FrontAstro",
+      "RelativePath": "img/astronauta.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\astronauta.svg"
+    },
+    {
+      "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\tech.svg",
+      "SourceId": "FrontAstro",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\",
+      "BasePath": "_content/FrontAstro",
+      "RelativePath": "img/tech.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\tech.svg"
     },
     {
       "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\js\\animacoes.js",

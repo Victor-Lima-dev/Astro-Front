@@ -155,7 +155,7 @@ function gerarElementosPergunta(pergunta, perguntaUnica, perguntas = []) {
 
     // Criar os elementos HTML com base nos dados da pergunta
     var divContainer = document.createElement("div");
-    divContainer.className = "container container-principal";
+    divContainer.className = "container container-principal container-responder";
 
 
     if (!perguntaUnica)
@@ -213,6 +213,8 @@ function gerarElementosPergunta(pergunta, perguntaUnica, perguntas = []) {
         divAlternativas.appendChild(pMotivo);
     });
 
+   
+
 
     if (!perguntaUnica)
     {
@@ -245,10 +247,26 @@ function gerarElementosPergunta(pergunta, perguntaUnica, perguntas = []) {
     divContainer.appendChild(divTitulo);
     divContainer.appendChild(divAlternativas);
 
+       //adicionar explicação
+       var divExplicacao = document.createElement("div");
+       divExplicacao.className = "explicacao";
+       divExplicacao.id = "explicacao";
+       divExplicacao.classList.add('d-none');
+   
+       var pExplicacao = document.createElement("p");
+       pExplicacao.className = "explicacao-paragrafo";
+       pExplicacao.textContent = pergunta.explicacao;
+   
+       divExplicacao.appendChild(pExplicacao);
+   
+       divContainer.appendChild(divExplicacao);
+
     if (!perguntaUnica)
     {
         divContainer.appendChild(divControleQuestao);
     }
+
+  
 
     // Substituir o conteúdo anterior pelo novo
     var divPerguntaAntiga = document.getElementById("divPergunta");

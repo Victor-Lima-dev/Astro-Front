@@ -40,7 +40,7 @@ function responderLista(lista) {
         });
 
         // Adiciona a pergunta à lista HTML
-        listaHTML.appendChild(perguntaItem);
+        //listaHTML.appendChild(perguntaItem);
 
 
         gerarElementosPergunta(pergunta , perguntaUnica, lista);
@@ -53,10 +53,8 @@ function responderLista(lista) {
 
     quantidadePerguntasLista = lista.length;
 
-
-
-   
-    mostrarContadores(lista);
+    
+    //mostrarContadores(lista);
 }
 
 //array de respostasLista
@@ -70,7 +68,7 @@ function salvarResposta (perguntaId, booleano) {
     };
     respostasLista.push(resposta);
     definirContadoresRespostasLista();
-    atualizarContadores();
+    //atualizarContadores();
 }
 
 function alterarEstiloBotao () {

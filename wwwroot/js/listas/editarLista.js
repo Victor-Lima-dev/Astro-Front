@@ -256,16 +256,12 @@ function ApagarElementosParaEditar() {
 function apagarElementosParaResponder()
 {
     const editarLista = document.getElementsByClassName('editarLista')[0];
-    const selecionarPerguntas = document.getElementsByClassName('selecionarPerguntas')[0];
+
     const perguntas = document.getElementsByClassName('perguntas')[0];
-    const elementoPesquisaLista = document.getElementsByClassName('container-pesquisarListas')[0];
-
-
-
-    selecionarPerguntas.remove();
+    
     editarLista.remove();
     perguntas.remove();
-    elementoPesquisaLista.remove();
+
 
 }
 
