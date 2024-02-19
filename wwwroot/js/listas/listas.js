@@ -15,9 +15,6 @@ async function obterListas() {
 
         const listas = await response.json();
 
-    
-
-        // Chamando a função para criar a tabela com as listas
         criarCardsDeListas(listas);
 
     } catch (error) {
@@ -281,9 +278,6 @@ async function pesquisarListas() {
 
         const listas = await response.json();
 
-
-    console.log(listas);
-    console.log(searchTerm);
 
     criarCardsDeListas(listas);
     

@@ -4,6 +4,8 @@ function responderLista(lista) {
     //limpar o conteudo do array de respostas
     respostasLista = [];
     perguntasRespondidas = [];
+    const perguntaUnica = false;
+
 
     // Limpa o conteúdo atual do elemento "responderLista"
     const responderListaElement = document.getElementById('responderLista');
@@ -33,13 +35,15 @@ function responderLista(lista) {
         // Adiciona um evento de clique para carregar a pergunta no centro do local ao ser clicada
         perguntaItem.addEventListener('click', function () {
             // Chama a função para gerar a pergunta no centro do local
-            gerarElementosPergunta(pergunta);
+            gerarElementosPergunta(pergunta, perguntaUnica, lista);
             alterarEstiloBotao();
         });
 
         // Adiciona a pergunta à lista HTML
         listaHTML.appendChild(perguntaItem);
-        gerarElementosPergunta(pergunta);
+
+
+        gerarElementosPergunta(pergunta , perguntaUnica, lista);
     });
 
     // Adiciona a lista HTML ao local para responder a lista

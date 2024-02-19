@@ -1,5 +1,5 @@
 
-function processarResposta(resposta, alternativaId) {
+function processarResposta(resposta, alternativaId, pergunta, motivoId) {
     try {
         var formData = new FormData();
         formData.append('IdPergunta', resposta.perguntaId);
@@ -14,18 +14,16 @@ function processarResposta(resposta, alternativaId) {
         })
         .then(response => response.json())
         .then(data => {
+
             // Chamar a função para interações com o DOM após a resposta
 
-            interacoesDomAposResposta(data, alternativaId);
-            
-             var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
-
+            interacoesDomAposResposta(data, alternativaId, motivoId);
              //salvar a resposta no array de respostas
                 salvarResposta(resposta.perguntaId, data);
 
         })
         .catch(error => {
-            alert('Ocorreu um erro ao enviar a resposta: ' + error.message);
+            console.error('Ocorreu um erro ao enviar a resposta: ' + error);
         });
     } catch (error) {
         console.error('Erro ao processar resposta:', error.message);
@@ -33,12 +31,7 @@ function processarResposta(resposta, alternativaId) {
 }
 
 // Função para interações com o DOM após a resposta ser processada
-function interacoesDomAposResposta(data, alternativaId) {
-    // Atualizar o conteúdo do elemento p com as informações recebidas
-    var paragrafoStatus = document.getElementById("paragrafoStatus");
-
-    // Verificar se a resposta é verdadeira ou falsa
-    var mensagem = data ? 'Resposta correta!' : 'Resposta incorreta!';
+function interacoesDomAposResposta(data, alternativaId, motivoId) {
 
     // Obter o botão de alternativa pelo id e aplicar o estilo correspondente
     var botaoAlternativa = document.getElementById(alternativaId);
@@ -50,12 +43,19 @@ function interacoesDomAposResposta(data, alternativaId) {
         // Desabilitar outros botões
         desabilitarBotoesAlternativa();
 
+        //mostrar a explicação
+        
+
 
 
         // Adicionar mensagem de resposta correta
         var mensagemResposta = document.getElementById('mensagemResposta');
         mensagemResposta.textContent = 'Resposta correta!';
         mensagemResposta.style.color = 'green';
+
+        var explicacao = document.getElementById('explicacao');
+        //retirar a classe d-none
+        explicacao.classList.remove('d-none');
     } else {
         // Resposta incorreta (vermelho)
         botaoAlternativa.style.backgroundColor = 'red';
@@ -65,6 +65,15 @@ function interacoesDomAposResposta(data, alternativaId) {
         var mensagemResposta = document.getElementById('mensagemResposta');
         mensagemResposta.textContent = 'Resposta incorreta!';
         mensagemResposta.style.color = 'red';
+
+        //revelar o erro
+
+        //obter o paragrafo com o id motivoId
+
+        var motivo = document.getElementById(motivoId);
+        //retirar a classe d-none
+
+        motivo.classList.remove('d-none');
 
     }
 }
@@ -81,3 +90,7 @@ function desabilitarBotoesAlternativa() {
 }
 
 
+function alternativaErrada(alternativaId)
+{
+    
+}

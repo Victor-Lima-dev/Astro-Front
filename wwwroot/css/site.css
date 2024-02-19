@@ -454,3 +454,102 @@ h3
  
   width: 100% !important;
 }
+
+.alternativa-div
+{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.alternativa-div > button
+{
+  width: 100%;
+}
+
+.alternativa-div > p
+{
+  max-width: 40rem;
+}
+
+#explicacao
+{
+  max-width: 40rem;
+  text-align: center;
+
+}
+
+.divContatorQuestao
+{
+    font-weight: 600;
+    color: #706E7F;
+}
+
+.titulo
+{
+    color: #575967;
+
+    margin-block: .5rem;
+}
+
+.alternativas , .controleQuestao
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    padding: .5rem;
+
+}
+
+.alternativas > button
+{
+    width: 100%;
+    min-height: 5rem;
+    text-align: start;
+    padding: .8rem;
+    border-radius: 10px;
+    background-color: white;
+
+    border: 1px solid #DAD6D3;
+
+    /* adicionar um tempo para animacao*/
+
+    transition: .3s;
+
+    color: #575967;
+
+    font-size: larger;
+}
+
+.alternativas > button:hover
+{
+    background-color: #DAD6D3;
+}
+
+.controleQuestao
+{
+    margin-block: 1rem;
+}
+
+.controleQuestao > button
+{
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    padding: .8rem;
+    border-radius: 10px;
+    background-color: #31304d;
+
+    border: none;
+
+    color: white;
+    font-weight: 600;
+
+    transition: .3s;
+
+    font-size: larger;
+}
