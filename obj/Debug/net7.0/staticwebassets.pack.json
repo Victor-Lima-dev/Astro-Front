@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\alien.svg",
+      "PackagePath": "staticwebassets\\img\\alien.svg"
+    },
+    {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\astronauta.svg",
       "PackagePath": "staticwebassets\\img\\astronauta.svg"
     },

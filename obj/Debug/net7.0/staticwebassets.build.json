@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aJ1Ie4JjdLkPzsev1CSXE4cnKrQJ8X3zVgVm+zQrozY=",
+  "Hash": "KdmalfPCd3J3qHMyNWxqt43034dJ5M2gHI8k0e0MC0c=",
   "Source": "FrontAstro",
   "BasePath": "_content/FrontAstro",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\alien.svg",
+      "SourceId": "FrontAstro",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\",
+      "BasePath": "_content/FrontAstro",
+      "RelativePath": "img/alien.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\alien.svg"
     },
     {
       "Identity": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\astronauta.svg",
