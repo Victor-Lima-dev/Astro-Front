@@ -269,11 +269,11 @@ function apagarElementosParaCriarLista()
 {
     const editarLista = document.getElementsByClassName('editarLista')[0];
     const caixaResponderLista = document.getElementsByClassName('caixaResponderLista')[0];
-    const elementoPesquisaLista = document.getElementsByClassName('container-pesquisarListas')[0];
+
 
     editarLista.remove();
     caixaResponderLista.remove();
-    elementoPesquisaLista.remove();
+
 
 }
 

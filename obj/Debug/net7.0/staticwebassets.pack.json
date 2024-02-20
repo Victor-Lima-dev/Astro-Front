@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\img\\astronauta.svg"
     },
     {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\edit.svg",
+      "PackagePath": "staticwebassets\\img\\edit.svg"
+    },
+    {
+      "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\garbage.svg",
+      "PackagePath": "staticwebassets\\img\\garbage.svg"
+    },
+    {
       "Id": "C:\\Users\\Vitor\\Desktop\\code\\Astro\\FrontAstro\\wwwroot\\img\\tech.svg",
       "PackagePath": "staticwebassets\\img\\tech.svg"
     },

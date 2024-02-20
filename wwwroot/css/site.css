@@ -1,3 +1,17 @@
+:root{
+
+  --cor-fundoPrincipal: #31304D;
+  --cor-destaquePrincipal: #F0ECE5;
+
+  --cor-branco: #FFFFFF;
+  --cor-segundoBranco: #F0ECE5;
+
+  --cor-cinza: #706E7F;
+
+}
+
+
+
 html {
   font-size: 14px;
 }
@@ -9,7 +23,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #31304D;
 }
 
 html {
@@ -20,6 +34,8 @@ html {
 body {
   margin-bottom: 60px;
   font-size: 1.15rem;
+
+  font-family: 'Roboto', sans-serif;
   
   /* background-color: #f2f2f2; */
 
@@ -171,7 +187,7 @@ li
   border-radius: 20px;
   
 
-  background-color: aliceblue;
+  background-color: #F3BC5C;
 
   padding: .3rem;
 }
@@ -193,15 +209,14 @@ li
 
 .pergunta-card:hover
 {
-  /* colocar uma cor leve, mas mais escura que aliceblue */
-  background-color: #e6f0ff;
+
 
 }
 
 
 .tag-pergunta 
 {
-  background-color: #258cfb;
+  background-color: #31304D;
   padding: .5rem;
   border-radius: 10px;
   color: white;
@@ -239,7 +254,7 @@ li
 {
   text-align: center;
   /* cor que combine com alice blue */
-  color: #258cfb;
+  color: #31304D;
   /* espaço entre as letras */
   letter-spacing: 1px;
 
@@ -477,11 +492,15 @@ h3
 
 }
 
+/*  */
+
 .divContatorQuestao
 {
     font-weight: 600;
     color: #706E7F;
 }
+
+
 
 .titulo
 {
@@ -711,6 +730,14 @@ img
 {
     color: black;
     padding-block: .5rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.titulo-p3 > h5
+{
+  margin: 0;
 }
 
 .listas
@@ -746,4 +773,28 @@ img
   width: 100%;
   display: flex;
   text-align: center;
+}
+
+.botoes
+{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+
+    
+}
+
+.botoes > img
+{
+   width: 2rem;
+}
+
+
+
+#pesquisarListas
+{
+    padding: .5rem;
+    border-radius: 10px;
+    border: none;
 }

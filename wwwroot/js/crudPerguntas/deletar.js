@@ -4,7 +4,7 @@ function deletarPergunta(idPergunta) {
         formData.append('id', idPergunta);
       
 
-        fetch(urlAPITeste + `Perguntas/Deletar`, {
+        fetch(urlAPI + `Perguntas/Deletar`, {
             method: "DELETE",
             body: formData,
             headers: {

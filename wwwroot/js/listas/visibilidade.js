@@ -12,3 +12,9 @@ function adicionarAnimacaoERemover(elementoPaiId) {
 
     }, 1000);
 }
+
+function removerSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.remove();
+}
+

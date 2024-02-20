@@ -326,26 +326,35 @@ function criarCards(perguntas) {
 
         });
 
-        //adicionar botao deletar
-        const botaoDeletar = document.createElement('button');
-        botaoDeletar.classList.add('btn', 'btn-danger', 'deletar-pergunta');
-        botaoDeletar.textContent = 'Deletar';
-        botaoDeletar.addEventListener('click', function (event) {
+        const divBotoes = document.createElement('div');
+        divBotoes.classList.add('botoes');
+
+        const svgDeletar = document.createElement('img');
+        svgDeletar.src = "/img/garbage.svg";
+        svgDeletar.alt = "Deletar pergunta";
+
+        svgDeletar.addEventListener('click', function (event) {
             event.stopPropagation();
             deletarPergunta(pergunta.id);
         });
 
-        //adicionar botao editar
-        const botaoEditar = document.createElement('button');
-        botaoEditar.classList.add('btn', 'btn-primary', 'editar-pergunta');
-        botaoEditar.textContent = 'Editar';
-        botaoEditar.addEventListener('click', function (event) {
+        divBotoes.appendChild(svgDeletar);
+
+     
+
+        const svgEditar = document.createElement('img');
+        svgEditar.src = "/img/edit.svg";
+        svgEditar.alt = "Editar pergunta";
+
+        svgEditar.addEventListener('click', function (event) {
             event.stopPropagation();
             destruirElementosIndex();
             criarEstruturaPergunta(pergunta);
         });
-        
-        console.log(pergunta);
+
+        divBotoes.appendChild(svgEditar);
+
+     
 
         const cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
@@ -372,8 +381,7 @@ function criarCards(perguntas) {
         cardBody.appendChild(numeroPergunta);
         cardBody.appendChild(conteudoPergunta);
         cardBody.appendChild(tagsPergunta);
-        cardBody.appendChild(botaoDeletar);
-        cardBody.appendChild(botaoEditar);
+        cardBody.appendChild(divBotoes);
 
         card.appendChild(cardBody);
         cardContainer.appendChild(card);

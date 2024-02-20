@@ -16,11 +16,13 @@ async function obterListas() {
         const listas = await response.json();
 
         criarCardsDeListas1(listas);
+        removerSpinner();
 
     } catch (error) {
         console.error('Erro ao obter listas:', error.message);
     }
 }
+
 
 
 // Função para criar cards de listas
@@ -127,6 +129,15 @@ function criarCardsDeListas(listas) {
 // Função para criar cards de listas
 function criarCardsDeListas1(listas) {
 
+    //verificar se existe o elemento selecionarPerguntas e remover
+
+    if(document.querySelector('.selecionarPerguntas') !== null)
+    {
+        const selecionarPerguntas = document.querySelector('.selecionarPerguntas');
+        selecionarPerguntas.remove();
+    }
+
+
     const cardListas = document.getElementById('cardListas');
     
     cardListas.innerHTML = ''; 
@@ -198,12 +209,12 @@ function criarCardsDeListas1(listas) {
     const input = document.createElement('input');
     input.type = 'text';
     input.id = 'pesquisarListas';
-    input.placeholder = 'Pesquisar questões...';
+    input.placeholder = 'Pesquisar Listas...';
     input.addEventListener('input', pesquisarComAtrasoListas);
 
-    tituloP3.appendChild(input);
-
+    
     tituloP3.appendChild(h5);
+    tituloP3.appendChild(input);
 
     divParte3.appendChild(tituloP3);
 
@@ -253,12 +264,6 @@ function criarCardsDeListas1(listas) {
     cardListas.appendChild(containerPrincipal);
 
 
-    //encontrar o elemento com essa classe e o remover selecionarPerguntas
-    //remover o elemento selecionarPerguntas
-
-    const selecionarPerguntas = document.querySelector('.selecionarPerguntas');
-    selecionarPerguntas.remove();
-
 }
 
 
@@ -279,6 +284,26 @@ function obterTagsUnicas(perguntas) {
 
 
 function criarListaPerguntas(perguntas) {
+
+let html = `
+    <div class="selecionarPerguntas container mt-3">
+        <ul id="listaDePerguntas" class=""></ul>
+        <div class="formPerguntasSelecionadas">
+            <form id="formPerguntaSelecionadas" class="perguntasElemento listaElemento">
+                <h1>Lista</h1>
+                <label for="inputNome">Nome:</label>
+                <input type="text" id="inputNome" name="nome" class="form-control" placeholder="Digite o nome">
+                <label for="inputDescricao">Descrição:</label>
+                <input type="text" id="inputDescricao" name="descricao" class="form-control" placeholder="Digite a descrição">
+                <button id="btnEnviarLista" class="btn btn-primary" onclick="enviarListaPerguntas()">Enviar Lista</button>
+                <ul id="listaPerguntasSelecionadas" class="list-group"></ul>
+            </form>
+        </div>
+    </div>
+`;
+
+document.querySelector('main').insertAdjacentHTML('beforeend', html);
+
     const listaPerguntas = document.getElementById('listaDePerguntas');
 
     const listaPerguntasSelecionadas = document.getElementById('listaPerguntasSelecionadas');
@@ -463,14 +488,6 @@ async function deletarLista(id) {
         console.error('Erro ao deletar Lista:', error.message);
     }
 }
-
-
-
-//function capiturar os ids das perguntas da lista selecionada e adicionar a um array
-
-//criar o array
-
-let perguntasSelecionadas = [];
 
 async function capturarPerguntasDaLista(lista)
 {
