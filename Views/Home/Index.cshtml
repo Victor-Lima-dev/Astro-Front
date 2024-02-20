@@ -16,7 +16,7 @@
             Uncover the secrets of the universe in a practical and intuitive way.</p>
 
         <div class="home-inputBox perguntasElemento" id="inputElemento">
-            <input class="home-input input form-control" type="text" id="textoEntrada">
+            <input class="home-input input form-control" type="text" id="textoEntrada" placeholder="Insira aqui uma pergunta, uma tag ou um pedaço de um texto para gerarmos a questao">
             <button type="button" class="home-botao botao btn btn-primary"
                 onclick="enviarFormulario()">Generate</button>
 
@@ -54,17 +54,17 @@
 
 
 
-<div class="perguntas perguntasElemento animate__animated animate__fadeIn">
+<div class="perguntas perguntasElemento animate__animated animate__fadeIn container-filtros">
 
 
     <div id="pesquisa" class="animate__animated animate__fadeIn tagsBox">
         
         
 
-        <label class="tituloPrincipal" for="pesquisaTags">Pesquisar Tags:</label>
+        <label class="labelFiltro" for="pesquisaTags">Pesquisar Tags:</label>
         <input type="text" id="pesquisaTags" oninput="pesquisarTags()">
 
-        <label class="tituloPrincipal" for="pesquisaQuestoes">Pesquisar Questoes:</label>
+        <label class="labelFiltro" for="pesquisaQuestoes">Pesquisar Questoes:</label>
         
         <input type="text" id="pesquisaQuestoes" oninput="pesquisarComDebounce()">
         

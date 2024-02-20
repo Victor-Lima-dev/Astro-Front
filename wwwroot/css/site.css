@@ -68,6 +68,11 @@ main {
  
 
     width: 100%;
+    
+    border: 1px solid #F3BC5C;
+    border-radius: 20px;
+
+    margin-bottom: 1rem;
   
 }
 
@@ -81,7 +86,7 @@ main {
   
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: .5rem;
 
 
   padding: .5rem;
@@ -99,7 +104,11 @@ main {
 
   border-radius: 20px;
 
-    background-color: aliceblue;
+    background-color: #F3BC5C;
+
+    color: #31304D;
+
+    font-weight: 600;
 
   
 }
@@ -136,9 +145,15 @@ main {
 #listaDeTags
 {
   display: flex;
-  flex-direction: row;
+ 
   flex-wrap: wrap;
   gap: .5rem;
+
+  
+  align-items: center;
+  justify-content: center;
+
+
 }
 
 li
@@ -156,8 +171,9 @@ li
   gap: 1rem;
   width: 100%;
   align-items: center;
+  justify-content: center;
 
-  
+ 
  
 }
 
@@ -265,14 +281,39 @@ li
 .home-inputBox
 {
   display: flex;
-  gap: .5rem;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.home-inputBox > button
+{
+    width: 7rem;
+    border-radius: 10px;
+    padding: .5rem;
+    font-weight: 600;
+    border: none;
+    transition: .3s;
+
+    color: #31304D;
+    background-color: white;
+}
+
+.home-inputBox > button:hover
+{
+    background: #F3BC5C;
+    
+    cursor: pointer;
+    color: #31304D;
+
 }
 
 .input
 {
   border-radius: 10px;
   width: 50%;
+  border: 1px solid #F3BC5C;
 }
 
 .home-botoes
@@ -735,6 +776,7 @@ img
     align-items: center;
 
     justify-content: center;
+
 }
 
 .titulo-p3 > h5
@@ -759,7 +801,7 @@ img
 {
     color: #F3BC5C;
     text-align: center;
-    padding: 1rem;
+    padding: .1rem;
 }
 
 .motivo, .explicacao
@@ -800,4 +842,59 @@ img
     border-radius: 10px;
     border: none;
     width: 10rem;
+}
+
+.container-filtros
+{
+
+  background-color: #F3BC5C;
+  border-radius: 40px;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.labelFiltro
+{
+  color: #31304D;
+  font-weight: 600;
+
+}
+
+#pesquisaTags, #pesquisaQuestoes
+{
+  padding: .5rem;
+  border-radius: 10px;
+  border: none;
+  width: 10rem;
+  
+}
+
+.container-filtros > div > button
+{
+  padding: .5rem;
+  border-radius: 10px;
+  border: none;
+  width: 10rem;
+  background-color: #31304D;
+  color: white;
+  transition: .3s;
+
+  font-weight: 600;
+}
+
+.container-filtros > div > button:hover
+{
+  background-color: #31304D;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+}
+
+#listaDeTags > li
+{
+
+  background-color: #31304D;
+  border-radius: 10px;
+  border: none ;
+  font-weight: 600;
 }
