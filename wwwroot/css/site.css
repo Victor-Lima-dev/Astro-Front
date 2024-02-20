@@ -538,7 +538,7 @@ h3
 
     color: #575967;
 
-    font-size: larger;
+   
 }
 
 .alternativas > button:hover
@@ -733,6 +733,8 @@ img
     display: flex;
     gap: .5rem;
     align-items: center;
+
+    justify-content: center;
 }
 
 .titulo-p3 > h5
@@ -797,4 +799,5 @@ img
     padding: .5rem;
     border-radius: 10px;
     border: none;
+    width: 10rem;
 }
