@@ -17,7 +17,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 string mySqlConnectionStr = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql (mySqlConnectionStr, ServerVersion. AutoDetect (mySqlConnectionStr)));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(mySqlConnectionStr));
+
+//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql (mySqlConnectionStr, ServerVersion. AutoDetect (mySqlConnectionStr)));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

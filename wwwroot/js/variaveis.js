@@ -14,7 +14,7 @@ const urlTeste = 'http://localhost:5084'
 
 const urlProd = 'http://172.203.230.21:8002'
 
-const urlAPI = urlProd + '/api/';
+const urlAPI = urlTeste + '/api/';
 
 const urlAPITeste = urlTeste + '/api/';
 
